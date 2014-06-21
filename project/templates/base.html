@@ -1,15 +1,9 @@
-<!doctype html lang="en">
-
+<!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>{% block page_title %}philc.io{% endblock %}</title>
+  <title>{% block page_title %}Your Site{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  {% block css %}
-  {% endblock %}
-
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-
+  {% block css %}{% endblock %}
 
 </head>
 <body class="box">
