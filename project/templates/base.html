@@ -1,8 +1,11 @@
-<!doctype html>
+<!doctype html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{% block page_title %}Your Site{% endblock %}</title>
+  <title>{% block page_title %}philc.io{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
   {% block css %}{% endblock %}
 
 </head>
@@ -11,15 +14,19 @@
 <nav class="nav-menu">
     <ul>
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="https://github.com/sloria/flask-ghpages-example">Source</a></li>
+        <li><a href="https://github.com/phillyc/phillyc.github.io">Source</a></li>
     </ul>
 </nav>
 
 <div class="{% block content_class %}container{% endblock content_class %}">
 
-  <div class="content" role="main">
+  <div class="content col-sm-8" role="main">
     {% block content %}{% endblock %}
   </div>
+
+  <div class="sidebar col-sm-4">
+    sidebar
+  </div> 
 
 </div><!-- end container -->
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
