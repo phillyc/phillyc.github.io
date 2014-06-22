@@ -11,11 +11,22 @@
 </head>
 <body class="box">
 
-<nav class="nav-menu">
-    <ul>
-        <li><a href="{{ url_for('home') }}">Home</a></li>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_1">
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <h1><a class="navbar-brand" href="{{ url_for('home') }}">philc.io</a></h1>
+
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar_collapse_1">
+      <ul class="nav navbar-nav">
         <li><a href="https://github.com/phillyc/phillyc.github.io">Source</a></li>
-    </ul>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <div class="{% block content_class %}container{% endblock content_class %}">
@@ -25,7 +36,44 @@
   </div>
 
   <div class="sidebar col-sm-4">
-    sidebar
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">work</h3>
+      </div>
+      <div class="panel-body">
+        Deploying a beta launch
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">play</h3>
+      </div>
+      <div class="panel-body">
+        <a href="http://store.steampowered.com/app/236430/">Dark Souls 2</a>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">read</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>
+            <a href="http://www.amazon.com/gp/product/048629823X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=048629823X&linkCode=as2&tag=ifphilio-20&linkId=PPRH7G32X32SW3EE">Meditations (Dover Thrift Editions)</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=048629823X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            <a href="http://www.amazon.com/gp/product/0060873175/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0060873175&linkCode=as2&tag=ifphilio-20&linkId=PSMW2GA2FGWEZWU2">Micro: A Novel</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=0060873175" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            <a href="http://www.amazon.com/gp/product/014312417X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=014312417X&linkCode=as2&tag=ifphilio-20&linkId=FOFLZJLHTUEVUWRW">Mastery</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=014312417X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
   </div> 
 
 </div><!-- end container -->

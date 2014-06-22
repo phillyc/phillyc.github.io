@@ -1,4 +1,5 @@
-# Nested comments in Python using a Depth First Search
+title: Nested comments in Python using a Depth First Search
+date: 2014-06-22 11:00
 
      class Comment(models.Model):
 
