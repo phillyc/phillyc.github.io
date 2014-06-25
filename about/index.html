@@ -1,8 +1,8 @@
 <!doctype html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{% block page_title %}philc.io{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>philc.io</title>
+  <link rel="stylesheet" href="/static/css/style.css">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -17,7 +17,7 @@
 
   </script>
 
-  {% block css %}{% endblock %}
+  
 
 </head>
 <body class="box">
@@ -28,23 +28,33 @@
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_1">
         <span class="sr-only">Toggle navigation</span>
       </button>
-      <h1 class="navbar-brand"><a href="{{ url_for('home') }}">philc.io</a></h1>
+      <h1 class="navbar-brand"><a href="/">philc.io</a></h1>
 
     </div>
 
     <div class="collapse navbar-collapse" id="navbar_collapse_1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url_for('about') }}">about</a></li>
+        <li><a href="/about/">about</a></li>
         <li><a href="https://github.com/phillyc/phillyc.github.io">source</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="{% block content_class %}container{% endblock content_class %}">
+<div class="container">
 
   <div class="content col-sm-8" role="main">
-    {% block content %}{% endblock %}
+    
+
+    <h3>Hey there</h3>
+
+    <p>I'm a web app developer at University of Central Florida. I specialize in Python and Django, but spend a good deal of time writing Javascript and CSS as well.</p>
+
+    <p>I manage a team of part time developers building tools for distance learning. This can be similar to herding cats, but frequent Nerf wars keep the troops in line. ;)</p>
+
+    <p>I spend my free time arguing about programming, playing games, and fussing with technology or my car. Occasionally I play racquetball.</p>
+
+
   </div>
 
   <div class="sidebar col-sm-4">
@@ -99,6 +109,6 @@
   </div> 
 
 </div><!-- end container -->
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="/static/js/script.js"></script>
 </body>
 </html>

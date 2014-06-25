@@ -3,6 +3,10 @@ from flask import render_template
 from app import app, pages
 
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
 @app.route('/')
 def home():
     posts = [page for page in pages if 'date' in page.meta]
