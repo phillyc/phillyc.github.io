@@ -18,3 +18,17 @@ def page(path):
     # e.g. "first-post"
     page = pages.get_or_404(path)
     return render_template('page.html', page=page)
+
+@app.route('/tags/')
+def tags():
+    posts = [page for page in pages if 'date' in page.meta]
+ 
+    tags = []
+    for post in posts:
+        for tag in post.meta['tags']:
+            tags.append(tag)
+    tags = set(tags)
+    tags = list(tags)
+    
+    
+    return render_template('tags.html', tags=tags)

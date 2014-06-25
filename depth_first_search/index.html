@@ -44,8 +44,16 @@
 
   <div class="content col-sm-8" role="main">
     
+
 <h1>Nested comments in Python using a Depth First Search</h1>
 <p>2014-06-22 11:00</p>
+
+<div class="tags">
+    
+        <a href="#"><span class="label label-primary">python</span></a>
+    
+</div>
+
 <pre><code>class Comment(models.Model):
   request = models.ForeignKey(Request, related_name = 'request')
   parent = models.ForeignKey('Comment', related_name = 'child', null = True)
@@ -129,6 +137,7 @@ while len(starting_comments) &gt; 0:
   # Reverse back to correct order.
   starting_comments.reverse()
 </code></pre>
+
 
   </div>
 

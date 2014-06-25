@@ -27,3 +27,7 @@ nav ul li a {
   font-weight: 400;
   text-transform: uppercase;
 }
+
+.tags {
+  padding-bottom: 10px;
+}

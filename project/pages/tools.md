@@ -1,5 +1,6 @@
 title: Mac OSX Tools
 date: 2014-06-24 12:57
+tags: [tools, mac OS X, python]
 
 This is a list of my indespensible tools for my Mac Book Pro.
 
