@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3>Posts with TODO tag</h3>
+    <ul>
+        {% for post in pages %}
+            <li><a href="{{ url_for('page', path=post.path) }}">
+                {{ post.meta.title }}
+            </a>- {{ post.meta.date }}</li>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}

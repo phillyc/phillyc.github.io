@@ -1,6 +1,6 @@
 title: Nested comments in Python using a Depth First Search
 date: 2014-06-22 11:00
-tags: [python]
+tags: [python, code]
 
     class Comment(models.Model):
       request = models.ForeignKey(Request, related_name = 'request')

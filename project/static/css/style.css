@@ -14,6 +14,7 @@ body {
   font-family: sans-serif;
   font-size: 17px;
   font-weight: 300;
+  background-color: #F8F7FF !important;
 }
 
 nav ul, nav ul li {
@@ -31,3 +32,13 @@ nav ul li a {
 .tags {
   padding-bottom: 10px;
 }
+
+.tags-page-tag {
+  padding-bottom: 5px;
+  font-size: 16px;
+}
+
+.no-bullet {
+  list-style-type: none;
+}
+
