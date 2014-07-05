@@ -46,12 +46,4 @@ def tags():
 
 #     return render_template('pages_with_tag.html', pages=pages_with_tags)
 
-# @freezer.register_generator
-# def tag_details():
-#     for tag in models.Tags.all():
-#         yield {'tag_id': tag.id}
 
-# @freezer.register_generator
-# def product_details():
-#     for product in models.Product.all():
-#         yield {'product_id': product.id}
