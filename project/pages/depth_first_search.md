@@ -1,6 +1,9 @@
 title: Nested comments in Python using a Depth First Search
 date: 2014-06-22 11:00
 tags: [python, code]
+blurb: Handling comments in Python can be a real chore, but it doesn't have to be. Using a simple depth first search, you can organize your comments into a nested list that can be displayed on your site, or passed to a client via JSON.
+
+Handling comments in Python can be a real chore, but it doesn't have to be. Using a simple depth first search, you can organize your comments into a nested list that can be displayed on your site, or passed to a client via JSON.
 
     class Comment(models.Model):
       request = models.ForeignKey(Request, related_name = 'request')

@@ -3,11 +3,23 @@
 
 <h2><span class="glyphicon glyphicon-inbox"></span> Posts</h2>
 
-<ul class="page-list">
+
   {% for page in pages %}
-      <li><a href="{{ url_for('page', path=page.path) }}">
-          {{ page.meta.title }}
-      </a>- {{ page.meta.date }}</li>
+    <h3>
+        <a href="{{ url_for('page', path=page.path) }}">
+            {{ page.meta.title }}
+        </a>
+    </h3>
+    <p>{{ page.meta.date }}</p>
+
+    <div class="tags">
+        {% for tag in page.meta.tags %}
+            <a href="#"><span class="label label-primary">{{ tag }}</span></a>
+        {% endfor %}
+    </div>
+
+    <p>{{ page.meta.blurb }}</p>
+
   {% endfor %}
 </ul>
 {% endblock %}

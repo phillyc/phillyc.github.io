@@ -36,12 +36,22 @@ def tags():
 
     return render_template('tags.html', tags=tags)
 
-@app.route('/pages/<tag>/')
-def tag(tag):
-    # Get all published pages.
-    published_pages = [page for page in pages if 'date' in page.meta]
+# @app.route('/pages/<tag>/')
+# def tag(tag):
+#     # Get all published pages.
+#     published_pages = [page for page in pages if 'date' in page.meta]
 
-    # List of pages with the given tag.
-    pages_with_tags = [page for page in published_pages if tag in page.meta['tags']]
+#     # List of pages with the given tag.
+#     pages_with_tags = [page for page in published_pages if tag in page.meta['tags']]
 
-    return render_template('pages_with_tag.html', pages=pages_with_tags)
+#     return render_template('pages_with_tag.html', pages=pages_with_tags)
+
+# @freezer.register_generator
+# def tag_details():
+#     for tag in models.Tags.all():
+#         yield {'tag_id': tag.id}
+
+# @freezer.register_generator
+# def product_details():
+#     for product in models.Product.all():
+#         yield {'product_id': product.id}

@@ -1,6 +1,6 @@
 title: Installing PostgreSQL on MacOSX
 
-tags:[postgresql,macosx,django,heroku,python]
+tags:[postgresql, macosx, django, heroku, python]
 
 # 
 
