@@ -24,21 +24,24 @@
 
 <nav class="navbar navbar-primary col-sm-12" role="navigation">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_collapse_1">
-        <span class="sr-only">Toggle navigation</span>
-      </button>
-      <h1 class="navbar-brand"><a href="{{ url_for('home') }}">philc.io</a></h1>
 
-    </div>
-
-    <div class="collapse navbar-collapse" id="navbar_collapse_1">
+    <div class="hidden-sm hidden-xs col-md-12">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url_for('about') }}">about</a></li>
-        <li><a href="https://github.com/phillyc/phillyc.github.io">source</a></li>
-        <li><a href="">projects</a></li>
-        <li><a href="">quick tips</a></li>
-        
+        <li><a href="{{ url_for('home') }}">philc.io</a></li>
+        <li>
+          <a href="https://github.com/phillyc/phillyc.github.io">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+            source
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('about') }}">
+            <span class="glyphicon glyphicon-user"></span>
+            about
+          </a>
+        </li>
+ <!--        <li><a href="">projects</a></li>
+        <li><a href="">quick tips</a></li> -->
       </ul>
     </div>
   </div>
@@ -57,7 +60,7 @@
         <h3 class="panel-title">work</h3>
       </div>
       <div class="panel-body">
-        Building a CentOS/nginx Vagrant box
+        Building a CentOS + nginx Vagrant box
       </div>
     </div>
 
@@ -66,7 +69,7 @@
         <h3 class="panel-title">play</h3>
       </div>
       <div class="panel-body">
-        <a href="http://store.steampowered.com/app/236430/">Dark Souls 2</a>
+        <a href="http://store.steampowered.com/app/241540/">State of Decay</a>
       </div>
     </div>
 
