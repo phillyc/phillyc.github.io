@@ -2,16 +2,16 @@
 {% block content %}
 
   {% for page in pages %}
-    <h3>
+    <h2>
         <a href="{{ url_for('page', path=page.path) }}">
             {{ page.meta.title }}
         </a>
-    </h3>
-    <p>{{ page.meta.date }}</p>
+    </h2>
+    <p><span class="glyphicon glyphicon-calendar"></span> {{ page.meta.date }}</p>
 
     <div class="tags">
         {% for tag in page.meta.tags %}
-            <a href="#"><span class="label label-primary">{{ tag }}</span></a>
+            <a href="/tags/{{tag}}"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> {{ tag }}</span></a>
         {% endfor %}
     </div>
 

@@ -1,12 +1,11 @@
 {% extends "base.html" %}
-{% block tags %}
+{% block content %}
 
     <h3><span class="glyphicon glyphicon-tags"></span> Tags</h3>
     <ul class="no-bullet">
-        foo
         {% for tag in tags %}
             <li class="tags-page-tag">
-                <a href="/pages/{{tag}}/">
+                <a href="/tags/{{tag}}/">
                     <span class="label label-primary">
                         <span class="glyphicon glyphicon-tag"></span> {{ tag }}
                     </span>

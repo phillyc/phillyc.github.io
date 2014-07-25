@@ -23,6 +23,6 @@ My display is a pretty basic one, since I'm using [Bootstrap](http://getbootstra
 
     <div class="tags">
         {% for tag in page.meta.tags %}
-            <a href="#"><span class="label label-primary">{{ tag }}</span></a>
+            <a href="/tags/{{ tag }}"><span class="label label-primary">{{ tag }}</span></a>
         {% endfor %}
     </div>

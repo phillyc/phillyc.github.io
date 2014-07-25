@@ -23,6 +23,7 @@ def page(path):
     page = pages.get_or_404(path)
     return render_template('page.html', page=page)
 
+
 @app.route('/tags/')
 def tags():
     published_pages = [page for page in pages if 'date' in page.meta]
@@ -36,14 +37,14 @@ def tags():
 
     return render_template('tags.html', tags=tags)
 
-# @app.route('/pages/<tag>/')
-# def tag(tag):
-#     # Get all published pages.
-#     published_pages = [page for page in pages if 'date' in page.meta]
+@app.route('/tags/<tag>/')
+def tag(tag):
+    # Get all published pages.
+    published_pages = [page for page in pages if 'date' in page.meta]
 
-#     # List of pages with the given tag.
-#     pages_with_tags = [page for page in published_pages if tag in page.meta['tags']]
+    # List of pages with the given tag.
+    pages_with_tag = [page for page in published_pages if tag in page.meta['tags']]
 
-#     return render_template('pages_with_tag.html', pages=pages_with_tags)
+    return render_template('pages_with_tag.html', pages=pages_with_tag)
 
 

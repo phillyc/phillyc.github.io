@@ -9,7 +9,15 @@ body {
   font-family: sans-serif;
   font-size: 17px;
   font-weight: 300;
-  background-color: #F8F7FF !important;
+  background-color: #F8F7FF;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
 }
 
 nav ul, nav ul li {

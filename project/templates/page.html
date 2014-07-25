@@ -6,7 +6,7 @@
 
 <div class="tags">
     {% for tag in page.meta.tags %}
-        <a href="#"><span class="label label-primary">{{ tag }}</span></a>
+        <a href="/tags/{{tag}}"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> {{ tag }}</span></a>
     {% endfor %}
 </div>
 

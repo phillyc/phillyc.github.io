@@ -1,5 +1,5 @@
 title: Getting the most out of part time developers.
-date: 2014-07-20 10:13
+date: 2014-07-20 10:30
 tags: [management, workflow]
 blurb: I've been managing a small team of part time web developers for just over a year. I'd like to share what I've learned about workflow in a small team, and specifically how to keep track of dozens of issues across a part time team.
 

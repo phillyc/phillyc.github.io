@@ -1,6 +1,6 @@
 title: Mac OSX Tools
 date: 2014-06-24 12:57
-tags: [tools, macOSX]
+tags: [tools, macOSX, workflow]
 blurb: There are tons of tools available to a Mac based professional. Here are the top tools that every developer should check out... 
 
 There are tons of tools available to a Mac based professional. Here are the top tools that every developer should check out...
