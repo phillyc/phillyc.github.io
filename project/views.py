@@ -45,6 +45,10 @@ def tag(tag):
     # List of pages with the given tag.
     pages_with_tag = [page for page in published_pages if tag in page.meta['tags']]
 
-    return render_template('pages_with_tag.html', pages=pages_with_tag)
 
+    # render the index template, but only feed it a list of pages with our given tag.
+    return render_template('index.html', pages=pages_with_tag)
+
+# @freezer.register_generator
+# def pages_with_tag():
 
