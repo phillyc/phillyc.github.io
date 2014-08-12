@@ -24,20 +24,7 @@ def page(path):
     return render_template('page.html', page=page)
 
 
-@app.route('/tags/')
-def tags():
-    published_pages = [page for page in pages if 'date' in page.meta]
-
-    tags = []
-    for post in published_pages:
-        for tag in post.meta['tags']:
-            tags.append(tag)
-    tags = set(tags)
-    tags = list(tags)
-
-    return render_template('tags.html', tags=tags)
-
-@app.route('/tags/<tag>/')
+@app.route('/tags/<tag>')
 def tag(tag):
     # Get all published pages.
     published_pages = [page for page in pages if 'date' in page.meta]
@@ -45,10 +32,5 @@ def tag(tag):
     # List of pages with the given tag.
     pages_with_tag = [page for page in published_pages if tag in page.meta['tags']]
 
-
-    # render the index template, but only feed it a list of pages with our given tag.
     return render_template('index.html', pages=pages_with_tag)
-
-# @freezer.register_generator
-# def pages_with_tag():
 
