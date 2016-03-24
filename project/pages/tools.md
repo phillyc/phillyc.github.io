@@ -11,9 +11,10 @@ There are tons of tools available to a Mac based professional. Here are the top 
 * [Alfred](http://www.alfredapp.com/) I'm experimenting with Alfred as a replacement for Quicksilver.
 * [Quickcast.io](http://quickcast.io/) Quickly record, edit, and upload 3 minute screen casts. Amazing for product demos.
 * [GanttProject](http://www.ganttproject.biz/) An open source, free gantt tool for project management.
+* [Trello](https://trello.com/) A card based, project management board.
 
 ### Developer tools
 
-* [Sequel Pro](http://www.sequelpro.com/) The very best MySQL database management tool available for Mac.
+* [Sequel Pro](http://www.sequelpro.com/) The best damn MySQL database management tool available for Mac.
 * [Sublime Text](http://www.sublimetext.com/) Calling this a text editor is the understatment of the year. 
 

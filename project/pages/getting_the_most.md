@@ -12,13 +12,13 @@ I've adopted several techniques and tools to help me manage the chaos of support
 
 ### Communication
 
-The first critical peice of the managment stack is communication. I know it's cliched, but sometimes cliches are true. If your team lacks good communication tools and culture, your products will suffer.
+The first critical peice of the managment stack is communication. I know it's cliched, but sometimes cliches are true. If your team lacks good communication tools and culture, your product will suffer.
 
 Our shop has a self hosted [GitLab][1] server, where we track all of our open issues. Every issue gets a number automatically, which we use heavily in our communication. Developers are also encouraged to use the issue discussion wall as a sort of mental dumping ground for any info that may be relevant to solving the issue. 
 
 [Basecamp](https://basecamp.com/) handles our outward facing communications. Any time I'm contacted by a user about a bug or feature, I ask them if I can cross post the result of our discussion to Basecamp. This helps bring one on one conversations into the open, where other users who may be affected by the same issues can eavesdrop, or even contribute. Additionally, this improves my part timers ability to see context for the work they are assigned.
 
-We use [Hipchat](http://hipchat.com) for our day to day chatting. I've found that having a less permanent comm tool helps greese the wheels of progress. This is where your team culture can really shine. We typically use this to share links, make jokes, and blow off steam. We only allow developers into this channel and that allows us to grow our own culture, in a less professional setting. Since we effectively have this channel open all the time, it allows for instant and critical messages to be broadcast to the whole team. 
+We use [Slack](http://slack.com) for our day to day chatting. I've found that having a less permanent comm tool helps greese the wheels of progress. This is where your team culture can really shine. We typically use this to share links and make jokes. We only allow developers into this channel and that allows us to grow our own culture, in a less professional setting. Since we effectively have this channel open all the time, it allows for instant and critical messages to be broadcast to the whole team. 
 
 
 ### Organization
@@ -36,11 +36,11 @@ GitLab unfortuantely has a limited interface when it comes to monitoring work ac
 
 Gantt charting can be a bit like astrological charting, in that people expect accurate predictions out of wildly to impossibly hard to predict processes. Unlike astrology though, it has a few redeeming merits. (Sorry astrologers)
 
-First, I've found that over the last eight months, with a milestone every 30 days or so, my team can be relied on to resolve around twenty two issues per milestone. 
+First, I've found that over the last eight months, with a milestone every 30 days or so, my team can be relied on to resolve around twenty issues per milestone. Now I can plan accordingly, where if we wasn't recording sucessful completions, I wouldn't have an easy way to gauge how many issues I can likely clear in a calendar month.
 
 Second, the Gannt chart allows me to identfy developers who are under or over burdened at a glance. That kind of knoweldge would take several screens in [GitLab][1].
 
-Third, being able to keep an eye on individual issues that have been open for several days let's me step in to offer additional help to a developer who may be struggling, or just plain forgot he had an open issue!
+Third, being able to monitor individual issues that have been open for several days let's me step in to offer additional help to a developer who may be struggling, or just plain forgot he had an open issue.
 
 There are a few more reasons to incorporate Gantt charting into your management stack, but I'll save those for a future article. Suffice to say, it's a pretty damn good management tool.
 
@@ -50,7 +50,7 @@ Ultimately, a good team is built on trust. As the project manager and lead progr
 
 Without trust in each other, this system breaks down. 
 
-Hopefully, you've found some of these tips to be useful. Try implementing one at a time in your management stack and see if things improve.
+Try implementing one tool at a time in your management stack and see if things improve.
 
 
 [1]: https://about.gitlab.com/
