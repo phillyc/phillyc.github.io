@@ -3,8 +3,6 @@ date: 2016-5-20 9:00
 tags: [python, new relic]
 blurb: Quick and dirty New Relic agent setup for Django's .wsgi file system.
 
-# Setting up the New Relic agent for Django .wsgi
-
 Setting up the New Relic agent is quite easy for a .wsgi application.
 
 We have a pretty typical .wsgi file:
