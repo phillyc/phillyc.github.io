@@ -1,0 +1,200 @@
+<!doctype html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>philc.io</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52186362-1', 'philc.io');
+  ga('send', 'pageview');
+
+  </script>
+
+  
+
+</head>
+<body class="box">
+
+<nav class="navbar navbar-primary col-sm-12" role="navigation">
+  <div class="container-fluid">
+
+    <div class="col-md-12">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/">philc.io</a></li>
+        <li>
+          <a href="https://github.com/phillyc/phillyc.github.io">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+            source
+          </a>
+        </li>
+        <li>
+          <a href="/about/">
+            <span class="glyphicon glyphicon-user"></span>
+            about
+          </a>
+        </li>
+ <!--        <li><a href="">projects</a></li>
+        <li><a href="">quick tips</a></li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="content col-sm-8 push-left" role="main">
+    
+
+<h1>Setting up the New Relic agent for Django .wsgi</h1>
+<p>2016-5-20 9:00</p>
+
+<!-- <div class="tags">
+    
+        <a href="/tags/python"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> python</span></a>
+    
+        <a href="/tags/new relic"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> new relic</span></a>
+    
+</div> -->
+
+<h1>Setting up the New Relic agent for Django .wsgi</h1>
+<p>Setting up the New Relic agent is quite easy for a .wsgi application.</p>
+<p>We have a pretty typical .wsgi file:</p>
+<pre><code>import os,sys
+import newrelic.agent
+
+newrelic.agent.initialize()
+
+sys.stdout = sys.stderr
+
+sys.path.append('/usr/local/lib/python2.7')
+sys.path.append('/usr/local/lib/python2.7/site-packages')
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+
+root_path = os.path.abspath(os.path.split(__file__)[0])
+sys.path.insert(0, root_path)
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+</code></pre>
+<h3>The important bit is here:</h3>
+<pre><code>import newrelic.agent
+
+newrelic.agent.initialize()
+</code></pre>
+<p>Two things to note here, first, the import and init of the agent <em>must come first</em> in the .wsgi file, otherwise the New Relic agent won't function properly. Now notice that the <code>initialize()</code> function is currently empty. This means the agent will initialize nothing and we won't see any reporting metrics in our New Relic dashboard.</p>
+<p>Every time I deploy, I need to add the absolute path to the New Relic agent initializer in the .wsgi file. This tells the New Relic agent where to find the newrelic.ini file, which carries settings flags. I can’t check the path into the Git repo, because developer instances run the Django included <code>runserver</code> and the QA path is going to be different than the Production path.</p>
+<pre><code>[me@server application]$ l
+total 60K
+drwxrwxr-x.  8 me    nginx  4.0K    Apr 14 14:00 .
+drwxrwsr-x. 14 nginx nginx  4.0K    Mar 16 09:05 ..
+lrwxrwxrwx   1 me    me     28      Apr 14 14:00 current -&gt; releases/2016.04.14_13.53.50
+drwxrwxr-x.  8 me    me     4.0K    Mar 12  2015 .git
+-rwxrwxr-x.  1 me    me     72      Mar 12  2015 .gitignore
+-rwxrwxr-x.  1 me    me     448     Mar 12  2015 go
+drwxrwxr-x.  2 me    me     4.0K    Apr 14 14:00 gobot
+-rwxrwxr-x.  1 me    me     562     Apr 14 13:45 go_config.json
+drwxrwsr-x.  2 me    nginx  4.0K    May 18 04:00 logs
+-rwxrwxr-x   1 me    nginx  8.6K    Mar 11 17:16 newrelic.ini
+lrwxrwxrwx   1 me    me     29      Apr 14 14:00 prev -&gt; releases/2016.03.31_16.52.49/
+-rwxrwxr-x.  1 me    me     1.9K    Mar 12  2015 README.md
+drwxrwxr-x.  7 me    nginx  4.0K    Apr 14 13:53 releases
+drwxrwxr-x.  3 me    nginx  4.0K    Mar 12  2015 .repositories
+drwxrwxr-x.  3 me    nginx  4.0K    Mar 12  2015 shared
+</code></pre>
+<p>Here you can see that the <code>newrelic.ini</code> file currently lives in the parent directory as a sibling of the release directories. This isn't the best place to put it though, since our nifty little GoBot is already configured to symlink the <code>shared</code> directory across releases. </p>
+<h2>There’s a better way to do this.</h2>
+<h3>Preserving the state of the newrelic.ini file on deploy.</h3>
+<p>First, I want my <code>newrelic.ini</code> file to have deploy persistance, basically, I want it to always be available in the <code>current</code> directory.</p>
+<p>Second, I want to keep track of what the file looked like on previous deploys. This would allow me to debug problems with the New Relic settings.</p>
+<p>As it happens, our GoBot can handle both of these tasks. Basically, it will copy the <code>newrelic.ini</code> file from <code>shared</code> into <code>current</code>, switch the <code>current</code> symlink to the new release, then create a symlink in the new <code>current</code> to the original <code>newrelic.ini</code> file in <code>shared</code>. That file is never moving, but we are preserving the state of the file as it was when we are deploying new code. This will make it much easier to spot configuration drift if something goes wrong with New Relic.</p>
+<h3>Telling .wsgi where to find the newrelic.ini</h3>
+<p>Remember this line from before? <code>newrelic.agent.initialize()</code>?</p>
+<p>We need to insert the path to newrelic.ini in the init function, like so: <code>newrelic.agent.initialize('/path/to/newrelic.ini')</code></p>
+<p>I need this path to be absolute, because it's the New Relic agent looking, not the Python process.</p>
+<p>Turns out, I can reuse some Python code, with the <code>sys</code> library. Even better that I already have what I need in the .wsgi file!</p>
+<pre><code>sys.path[0]
+</code></pre>
+<p>This is pretty basic, but it outputs the first item in the <code>sys.path</code> list, which happens to be the absolute path to the current file.</p>
+<p>In this case I get <code>/var/www/vhosts/site/application</code> and I need to append <code>newrelic.ini</code>.</p>
+<p>So we'll put the <code>newrelic.ini</code> file in <code>/shared</code> after configuring GoBot to symlink it into <code>/current</code>. </p>
+<p>Now our code should look like this:</p>
+<pre><code>import newrelic.agent
+
+newrelic.agent.initialize(sys.path + '/newrelic.ini')
+</code></pre>
+<p>The cool thing is, I can now check my .wsgi file into git and not worry about server configuration!</p>
+
+
+  </div>
+
+  <div class="sidebar col-sm-4">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">work</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li><a href="http://totroops.com">ToTroops.com</a></li>
+          <li>Various DevOps tasks including Dockerizing everything.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">play</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li><a href="http://store.steampowered.com/app/413150/">Stardew Valley</a></li>
+          <li><a href="http://store.steampowered.com/app/252950/">Rocket League</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">tsundoku</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>
+            <a href="http://www.amazon.com/gp/product/048629823X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=048629823X&linkCode=as2&tag=ifphilio-20&linkId=PPRH7G32X32SW3EE">Meditations (Dover Thrift Editions)</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=048629823X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            <a href="http://www.amazon.com/gp/product/0143125427/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0143125427&linkCode=as2&tag=ifphilio-20&linkId=OEU2IRXKO2JBG657">Lexicon: A Novel</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=0143125427" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            <a href="http://www.amazon.com/gp/product/014312417X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=014312417X&linkCode=as2&tag=ifphilio-20&linkId=FOFLZJLHTUEVUWRW">Mastery</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=014312417X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">contact</h3>
+      </div>
+      <div class="panel-body">
+        <p><a href="mailto:hello@philc.io">hello@philc.io</a></p>
+        <p><a href="https://www.linkedin.com/pub/philip-carter/53/828/779">linkedin</a></p>
+      </div>
+    </div>
+
+
+  </div> 
+
+</div><!-- end container -->
+<script src="/static/js/script.js"></script>
+</body>
+</html>
