@@ -1,5 +1,5 @@
 title: Little Bets - Peter Sims
-date: 
+<!-- date:  -->
 tags: [books, business, review]
 blurb: Peter Sims gives us a tour of why we should think smaller when working on our ideas.
 

@@ -1,5 +1,5 @@
 title: Docker for Python
-date: 
+<!-- date:  -->
 tags: [python, docker]
 blurb: The why and how for basic usage of Docker for Python code.
 

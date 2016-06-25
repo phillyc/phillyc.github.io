@@ -1,5 +1,5 @@
 title: Chmod numbers versus letters.
-date:
+<!-- date: -->
 tags: [linux]
 blurb: There are some interesting ways to manage file permissions in standard Linux environments.
 
