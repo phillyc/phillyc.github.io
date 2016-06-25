@@ -1,5 +1,5 @@
 title: Setting up the New Relic agent for Django .wsgi
-date: 2016-5-20 9:00
+date: 2016-05-20 9:00
 tags: [python, new relic]
 blurb: Quick and dirty New Relic agent setup for Django's .wsgi file system.
 
