@@ -88,7 +88,6 @@ Now our code should look like this:
 
 	import newrelic.agent
 	
-	newrelic.agent.initialize(sys.path + '/newrelic.ini')
+	newrelic.agent.initialize(sys.path[0] + '/newrelic.ini')
 
 The cool thing is, I can now check my .wsgi file into git and not worry about server configuration!
-

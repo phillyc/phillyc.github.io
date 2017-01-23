@@ -7,6 +7,10 @@ from app import app, pages
 def about():
     return render_template('about.html')
 
+@app.route('/experiments/')
+def experiments():
+    return render_template('experiments.html')
+
 @app.route('/')
 def home():
     published_pages = [page for page in pages if 'date' in page.meta]
