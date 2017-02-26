@@ -295,7 +295,7 @@ https://wiki.centos.org/TipsAndTricks/YumAndRPM#head-3c061f4a180e5bc90b7f599c4e0
 
 It’s not in the yum --help readout, but yum localinstall /path works a charm to install a local package.
 
-![GitLab Command line logo](https://github.com/phillyc/phillyc.github.io/project/static/img/ucf_gitlab_01.PNG)
+![GitLab Command line logo](https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_01.PNG)
 
 ## Don’t be afraid to admit defeat.
 
