@@ -375,10 +375,10 @@ https://wiki.centos.org/TipsAndTricks/YumAndRPM#head-3c061f4a180e5bc90b7f599c4e0
 <p><img alt="GitLab Command line logo" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_01.PNG" /></p>
 <h2>Don’t be afraid to admit defeat.</h2>
 <p>After spending a crazy long time trying to accomplish what I set out to, I was finally smart enough to realize that I was too dumb to do it a certain way. Always look for more than one way to skin a server. In this case, I could have used scp the first time and saved myself a lot of headache. Lesson learned.</p>
-<p><img alt="GitLab login page" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_02.PNG" />
+<p><img alt="GitLab login page" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_02.PNG" />
 <em>The money shot!</em></p>
 <h2>Setting up LDAP</h2>
-<p><img alt="My notes on LDAP" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_03.PNG" /></p>
+<p><img alt="My notes on LDAP" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_03.PNG" /></p>
 <p>After showing the UCF Dev Group the running server, they wanted to be able to login via their LDAP credentials. This is just a username/password combo, but it’s shared across university services. By default, GitLab uses a simple email/password for login.</p>
 <p>Based on my conversation with Thomas, a server admin here who has done this before, I need to update some fields in a gitlab.yml file. So I need to find this particular file on my server:</p>
 <p><code>sudo find / -name ‘gitlab.yml’</code></p>
@@ -418,9 +418,9 @@ gitlab Reconfigured!</p>
 <p>But when I try logging into the server I get rejected on my LDAP creds. What’s up?</p>
 <p>Fortunately, there’s a troubleshooting trick: 
 <code>sudo gitlab-rake gitlab:ldap:check</code></p>
-<p><img alt="Checking LDAP..." src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_04.PNG" /></p>
+<p><img alt="Checking LDAP..." src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_04.PNG" /></p>
 <p>Hm, that doesn’t seem right. I thought the compile command from before was supposed to set that flag in gitlab.yml?</p>
-<p><img alt="LDAP Settings" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_05.PNG" /></p>
+<p><img alt="LDAP Settings" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_05.PNG" /></p>
 <blockquote>
 <p>## LDAP settings
   # You can inspect a sample of the LDAP users with login access by running:
@@ -433,7 +433,7 @@ gitlab Reconfigured!</p>
 </blockquote>
 <p>Well that’s odd, because it looks like some of my settings were picked up properly. Somehow the enabled flag got set to false though.</p>
 <p>Let’s examine the gitlab.rb file again:</p>
-<p><img alt="GitLab Settings" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_06.PNG" /></p>
+<p><img alt="GitLab Settings" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_06.PNG" /></p>
 <blockquote>
 <p>gitlab_rails['ldap_enabled'] = false
   gitlab_rails['ldap_servers'] = YAML.load &lt;&lt;-'EOS' # remember to close this block with 'EOS' below
@@ -442,7 +442,7 @@ gitlab Reconfigured!</p>
 </blockquote>
 <p>So, whoops! I forgot the flip the flag in here.</p>
 <p>Let’s recompile and run our ldap check command again:</p>
-<p><img alt="Checking LDAP again" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_07.PNG" /></p>
+<p><img alt="Checking LDAP again" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_07.PNG" /></p>
 <blockquote>
 <p>[me@server ~]$ sudo gitlab-rake gitlab:ldap:check
 Checking LDAP ...</p>
@@ -515,10 +515,10 @@ Net::LDAP::Error: getaddrinfo: Name or service not known</p>
       sync_ssh_keys: false</p>
 </blockquote>
 <p>It turns out, I needed to specify “ssl” as the method and that meant I could drop the “ldaps://” portion of the host I provided, since it would be automatically added by the connector.</p>
-<p><img alt="Some LDAP success" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_09.PNG" /></p>
+<p><img alt="Some LDAP success" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_09.PNG" /></p>
 <p>Money shot!</p>
 <h2>But can I login now?</h2>
-<p><img alt="Failed login" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_10.PNG" /></p>
+<p><img alt="Failed login" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_10.PNG" /></p>
 <p><em>Apparently not.</em></p>
 <p>So what’s going on here? The server clearly has access to LDAP now, and it’s not throwing any more configuration errors. Still, I can’t login with my known good credentials.</p>
 <p>Could it be “bind_dn” or “base”?</p>
@@ -542,7 +542,7 @@ Completed 200 OK in 41ms (Views: 17.5ms | ActiveRecord: 2.9ms)</p>
 </blockquote>
 <p>So there really aren’t many clues here…</p>
 <p>Let’s take a look at the ldapcheck response again:</p>
-<p><img alt="Clueless LDAP" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_11.PNG" /></p>
+<p><img alt="Clueless LDAP" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_11.PNG" /></p>
 <p>So if we read this carefully, I should expect to see a list of authorized users here. Does that mean the request is going through but getting no results?</p>
 <p>I finally got my SysAdmin to show me how he was doing it. Turns out, I had a few other things mixed up.</p>
 <p>‘Uid’ is supposed to be set to “sAMAccountName” which I assume means that’s where the ldap call is looking to match the user id against what I’ve supplied in the first field of “base”. </p>
@@ -578,7 +578,7 @@ Completed 200 OK in 41ms (Views: 17.5ms | ActiveRecord: 2.9ms)</p>
 </blockquote>
 <h2>Yatta!</h2>
 <p>There you have it. It may have taken a while, but I learned a lot along the way. When you apply yourself to a new task, don’t be overwhelmed, be overwhelming!</p>
-<p><img alt="Yatta!" src="https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_12.PNG" /></p>
+<p><img alt="Yatta!" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_12.PNG" /></p>
 
 
   </div>
