@@ -295,17 +295,17 @@ https://wiki.centos.org/TipsAndTricks/YumAndRPM#head-3c061f4a180e5bc90b7f599c4e0
 
 It’s not in the yum --help readout, but yum localinstall /path works a charm to install a local package.
 
-![GitLab Command line logo]()
+![GitLab Command line logo](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_01.PNG)
 
 ## Don’t be afraid to admit defeat.
 
 After spending a crazy long time trying to accomplish what I set out to, I was finally smart enough to realize that I was too dumb to do it a certain way. Always look for more than one way to skin a server. In this case, I could have used scp the first time and saved myself a lot of headache. Lesson learned.
 
-![GitLab login page]()
+![GitLab login page](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_02.PNG)
 *The money shot!*
 
 ## Setting up LDAP
-![My notes on LDAP]()
+![My notes on LDAP](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_03.PNG)
 
 After showing the UCF Dev Group the running server, they wanted to be able to login via their LDAP credentials. This is just a username/password combo, but it’s shared across university services. By default, GitLab uses a simple email/password for login.
 
@@ -352,11 +352,11 @@ But when I try logging into the server I get rejected on my LDAP creds. What’s
 Fortunately, there’s a troubleshooting trick: 
 `sudo gitlab-rake gitlab:ldap:check`
 
-![Checking LDAP...]()
+![Checking LDAP...](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_04.PNG)
 
 Hm, that doesn’t seem right. I thought the compile command from before was supposed to set that flag in gitlab.yml?
 
-![LDAP Settings]()
+![LDAP Settings](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_05.PNG)
 
 >  ## LDAP settings
   # You can inspect a sample of the LDAP users with login access by running:
@@ -371,7 +371,7 @@ Well that’s odd, because it looks like some of my settings were picked up prop
 
 Let’s examine the gitlab.rb file again:
 
-![GitLab Settings]()
+![GitLab Settings](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_06.PNG)
 
 >  gitlab_rails['ldap_enabled'] = false
   gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
@@ -383,7 +383,7 @@ So, whoops! I forgot the flip the flag in here.
 
 Let’s recompile and run our ldap check command again:
 
-![Checking LDAP again]()
+![Checking LDAP again](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_07.PNG)
 
 >[me@server ~]$ sudo gitlab-rake gitlab:ldap:check
 Checking LDAP ...
@@ -462,13 +462,13 @@ After looking through the gitlab.rb file again and on the advice of my SysAdmin 
 
 It turns out, I needed to specify “ssl” as the method and that meant I could drop the “ldaps://” portion of the host I provided, since it would be automatically added by the connector.
 
-![Some LDAP success]()
+![Some LDAP success](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_09.PNG)
 
 Money shot!
 
 ## But can I login now?
 
-![Failed login]()
+![Failed login](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_10.PNG)
 
 *Apparently not.*
 
@@ -498,7 +498,7 @@ So there really aren’t many clues here…
 
 Let’s take a look at the ldapcheck response again:
 
-![Clueless LDAP]()
+![Clueless LDAP](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_11.PNG)
 
 So if we read this carefully, I should expect to see a list of authorized users here. Does that mean the request is going through but getting no results?
 
@@ -544,4 +544,4 @@ This is what it all looks like, I’ve obfuscated server names and passwords:
 
 There you have it. It may have taken a while, but I learned a lot along the way. When you apply yourself to a new task, don’t be overwhelmed, be overwhelming!
  
-![Yatta!]()
+![Yatta!](https://github.com/phillyc/phillyc.github.io/blob/master/static/img/ucf_gitlab_12.PNG)

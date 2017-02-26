@@ -1,4 +1,4 @@
-# philc.io
+# phillyc.github.io
 
 Built using Frozen-Flask.
 
@@ -12,5 +12,11 @@ Run the freeze.py file to compile the .md files into HTML. Then push to master.
 Add a title.md file to the project/pages/ directory. This will get read and frozen to HTML when freeze.py is run.
 
 ### Local developement
-(phillyc)~/development/phillyc.github.io (ph652925) [master !]
- ☠  python run.py
+Build a virtualenv.
+
+Run `pip install -r requirements.txt`
+
+Run `python freeze.py` from inside the virtualenv.
+
+Push the changes to master.
+
