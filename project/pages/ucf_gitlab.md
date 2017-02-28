@@ -4,7 +4,7 @@ tags: [devops, centos6, gitlab]
 blurb: The long winding road to a functional University wide GitLab server.
 
 
-# Prelude
+## Prelude
 
 Once a month, the various software developers here at UCF gather to discuss tips, tricks, and troubles of our jobs on campus. Sometimes these talks are punctuated by moments of clarity, one of which lead us to the discovery that many of the developers would benefit from having a shared git instance, where we could all see and contribute towards common code.
 
@@ -302,6 +302,7 @@ It’s not in the yum --help readout, but yum localinstall /path works a charm t
 After spending a crazy long time trying to accomplish what I set out to, I was finally smart enough to realize that I was too dumb to do it a certain way. Always look for more than one way to skin a server. In this case, I could have used scp the first time and saved myself a lot of headache. Lesson learned.
 
 ![GitLab login page](https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_02.PNG)
+
 *The money shot!*
 
 ## Setting up LDAP
@@ -513,30 +514,30 @@ Finally, we need to add a user_filter so we don’t get everyone in the universi
 This is what it all looks like, I’ve obfuscated server names and passwords:
 
 >  gitlab_rails['ldap_enabled'] = true
-  gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
-    main: # 'main' is the GitLab 'provider ID' of this LDAP server
-      label: 'LDAP'
-      host: 'server.ucf.edu'
-      port: 636
-      uid: 'sAMAccountName'
-      method: 'ssl' # "tls" or "ssl" or "plain"
-      bind_dn: 'user@server.ucf.edu'
-      password: '#######'
-      active_directory: true
-      allow_username_or_email_login: false
-      block_auto_created_users: false
-      base: 'OU=People,DC=net,DC=ucf,DC=edu'
-      user_filter: '(memberOf=CN=UCF - Enterprise Email,OU=Exchange,OU=Groups,DC=net,DC=ucf,DC=edu)'
-      attributes:
-       	username: ['uid', 'userid', 'sAMAccountName']
-       	email:    ['mail', 'email', 'userPrincipalName']
-       	name:       'cn'
-       	first_name: 'givenName'
-       	last_name:  'sn'
-     ## EE only
-      group_base: ''
-      admin_group: ''
-      sync_ssh_keys: false
+>  gitlab_rails['ldap_servers'] = YAML.load <<-'EOS' # remember to close this block with 'EOS' below
+>    main: # 'main' is the GitLab 'provider ID' of this LDAP server
+>      label: 'LDAP'
+>      host: 'server.ucf.edu'
+>      port: 636
+>      uid: 'sAMAccountName'
+>      method: 'ssl' # "tls" or "ssl" or "plain"
+>      bind_dn: 'user@server.ucf.edu'
+>      password: '#######'
+>      active_directory: true
+>      allow_username_or_email_login: false
+>      block_auto_created_users: false
+>      base: 'OU=People,DC=net,DC=ucf,DC=edu'
+>      user_filter: '(memberOf=CN=UCF - Enterprise Email,OU=Exchange,OU=Groups,DC=net,DC=ucf,DC=edu)'
+>      attributes:
+>       	username: ['uid', 'userid', 'sAMAccountName']
+>       	email:    ['mail', 'email', 'userPrincipalName']
+>       	name:       'cn'
+>       	first_name: 'givenName'
+>       	last_name:  'sn'
+>     ## EE only
+>      group_base: ''
+>      admin_group: ''
+>      sync_ssh_keys: false
 
 
 

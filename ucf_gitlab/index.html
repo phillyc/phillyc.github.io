@@ -122,7 +122,7 @@ ooo+o+++++++omNNNNNNNNNNNNNNNNNNNNNNMMMMMMMNNNMMMMyooo+:-....--:/osooo/+mMNNNNNN
     
 </div> -->
 
-<h1>Prelude</h1>
+<h2>Prelude</h2>
 <p>Once a month, the various software developers here at UCF gather to discuss tips, tricks, and troubles of our jobs on campus. Sometimes these talks are punctuated by moments of clarity, one of which lead us to the discovery that many of the developers would benefit from having a shared git instance, where we could all see and contribute towards common code.</p>
 <p>My department, the Center for Distributed Learning, maintains a department level GitLab server so I volunteered us to lead the charge in standing up a university level instance. This began back in May 2016, where initial requests were made to UCF Computer Services and Technology. CS&amp;T is responsible for standing up CentOS VMs for us developers. </p>
 <p>Due to some early miscommunications, the first server was stood up mid June, but with a Windows 2012 image instead of the required CentOS image. </p>
@@ -375,8 +375,8 @@ https://wiki.centos.org/TipsAndTricks/YumAndRPM#head-3c061f4a180e5bc90b7f599c4e0
 <p><img alt="GitLab Command line logo" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_01.PNG" /></p>
 <h2>Don’t be afraid to admit defeat.</h2>
 <p>After spending a crazy long time trying to accomplish what I set out to, I was finally smart enough to realize that I was too dumb to do it a certain way. Always look for more than one way to skin a server. In this case, I could have used scp the first time and saved myself a lot of headache. Lesson learned.</p>
-<p><img alt="GitLab login page" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_02.PNG" />
-<em>The money shot!</em></p>
+<p><img alt="GitLab login page" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_02.PNG" /></p>
+<p><em>The money shot!</em></p>
 <h2>Setting up LDAP</h2>
 <p><img alt="My notes on LDAP" src="https://raw.githubusercontent.com/phillyc/phillyc.github.io/master/static/img/ucf_gitlab_03.PNG" /></p>
 <p>After showing the UCF Dev Group the running server, they wanted to be able to login via their LDAP credentials. This is just a username/password combo, but it’s shared across university services. By default, GitLab uses a simple email/password for login.</p>
@@ -551,30 +551,30 @@ Completed 200 OK in 41ms (Views: 17.5ms | ActiveRecord: 2.9ms)</p>
 <p>This is what it all looks like, I’ve obfuscated server names and passwords:</p>
 <blockquote>
 <p>gitlab_rails['ldap_enabled'] = true
-  gitlab_rails['ldap_servers'] = YAML.load &lt;&lt;-'EOS' # remember to close this block with 'EOS' below
-    main: # 'main' is the GitLab 'provider ID' of this LDAP server
-      label: 'LDAP'
-      host: 'server.ucf.edu'
-      port: 636
-      uid: 'sAMAccountName'
-      method: 'ssl' # "tls" or "ssl" or "plain"
-      bind_dn: 'user@server.ucf.edu'
-      password: '#######'
-      active_directory: true
-      allow_username_or_email_login: false
-      block_auto_created_users: false
-      base: 'OU=People,DC=net,DC=ucf,DC=edu'
-      user_filter: '(memberOf=CN=UCF - Enterprise Email,OU=Exchange,OU=Groups,DC=net,DC=ucf,DC=edu)'
-      attributes:
-        username: ['uid', 'userid', 'sAMAccountName']
-        email:    ['mail', 'email', 'userPrincipalName']
-        name:       'cn'
-        first_name: 'givenName'
-        last_name:  'sn'
-     ## EE only
-      group_base: ''
-      admin_group: ''
-      sync_ssh_keys: false</p>
+ gitlab_rails['ldap_servers'] = YAML.load &lt;&lt;-'EOS' # remember to close this block with 'EOS' below
+   main: # 'main' is the GitLab 'provider ID' of this LDAP server
+     label: 'LDAP'
+     host: 'server.ucf.edu'
+     port: 636
+     uid: 'sAMAccountName'
+     method: 'ssl' # "tls" or "ssl" or "plain"
+     bind_dn: 'user@server.ucf.edu'
+     password: '#######'
+     active_directory: true
+     allow_username_or_email_login: false
+     block_auto_created_users: false
+     base: 'OU=People,DC=net,DC=ucf,DC=edu'
+     user_filter: '(memberOf=CN=UCF - Enterprise Email,OU=Exchange,OU=Groups,DC=net,DC=ucf,DC=edu)'
+     attributes:
+          username: ['uid', 'userid', 'sAMAccountName']
+          email:    ['mail', 'email', 'userPrincipalName']
+          name:       'cn'
+          first_name: 'givenName'
+          last_name:  'sn'
+    ## EE only
+     group_base: ''
+     admin_group: ''
+     sync_ssh_keys: false</p>
 </blockquote>
 <h2>Yatta!</h2>
 <p>There you have it. It may have taken a while, but I learned a lot along the way. When you apply yourself to a new task, don’t be overwhelmed, be overwhelming!</p>
