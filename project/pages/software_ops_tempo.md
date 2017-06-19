@@ -1,13 +1,13 @@
 title: Measuring Software Operations Tempo
 date: 2017-06-19 9:00
 tags: [business, devops, excel]
-blurb: As a long time member of the twenty two member strong web development team at UCF’s Center for Distributed Learning, I have stepped up to the challenge of measuring Ops Tempo for our group.
+blurb: As a long time member of the twenty two person strong web development team at UCF’s Center for Distributed Learning, I have stepped up to the challenge of measuring Ops Tempo for our group.
 
 # What is Ops Tempo?
 
 In the military, there is a frequently used term “Ops Tempo” which usually denotes the pace and frequency of operations on a military base, a unit, or even for an individual. There are several key things at each level that are measured to give command staff an understanding of current workload and what they may be able to accomplish under similar circumstances.
 
-As a long time member of the twenty two member strong web development team at UCF’s Center for Distributed Learning, I have stepped up to the challenge of measuring Ops Tempo for our group.
+As a long time member of the twenty two person strong web development team at UCF’s Center for Distributed Learning, I have stepped up to the challenge of measuring Ops Tempo for our group.
 
 I’d like to share my efforts and findings with the broader community. I’ve changed all the names to protect my coworker’s privacy.
 
