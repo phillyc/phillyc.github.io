@@ -1,5 +1,5 @@
 title: Using Python, Google Docs, and AWS to manage my poker bankroll.
-date: 
+<!-- date:  -->
 tags: []
 blurb:
 
