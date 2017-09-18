@@ -1,5 +1,5 @@
 title: Lookout for cheaters!
-date: 2017-02-28
+date: 2017-02-28 11:00
 tags: [infosec, machine learning]
 blurb: How do we know student employees aren't using their power to cheat?
 
