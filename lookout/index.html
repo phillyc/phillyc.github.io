@@ -1,0 +1,181 @@
+<!doctype html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>philc.io</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+  
+
+</head>
+<body class="box">
+
+<nav class="navbar navbar-primary col-sm-12" role="navigation">
+  <div class="container-fluid">
+
+    <div class="col-md-12">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/">phillyc</a></li>
+        <li>
+          <a href="https://github.com/phillyc/phillyc.github.io">
+            <span class="glyphicon glyphicon-heart-empty"></span>
+            source
+          </a>
+        </li>
+        <li>
+          <a href="/about/">
+            <span class="glyphicon glyphicon-user"></span>
+            about
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="content col-sm-8 push-left" role="main">
+    
+
+<h1>Lookout for cheaters!</h1>
+<p>2017-02-28 9:00</p>
+
+<!-- <div class="tags">
+    
+        <a href="/tags/infosec"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> infosec</span></a>
+    
+        <a href="/tags/machine learning"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> machine learning</span></a>
+    
+</div> -->
+
+<h2>Intro</h2>
+<p>We love working with student employees. </p>
+<p>They have the best ideas because they feel the pain of daily student life. We need to give them elevated powers in Canvas so they can help us build awesome tools, but with great power comes great responsibility. </p>
+<p><em>How do we know they aren't using this power to cheat?</em></p>
+<p>Great security comes in multiple layers. If you were trying to rob a bank, do you think the bank would <em>only</em> use security cameras? No! Banks have heavy front doors, guards, alarms, bullet-proof glass, dye-packed bills, etc. etc. etc. </p>
+<p>Similar to banks, we have a variety of security measures and principles in place to keep our employees honest.</p>
+<p>I should point out that is is not only student employees who should be monitored, but anyone with elevated permissions in the system!</p>
+<h2>The chilling effect of monitoring.</h2>
+<p>The first layer of security comes from training.</p>
+<p>We make a big point of educating every new hire on our ability to monitor and catch bad actors.</p>
+<p>We make no secret of our security principles, but our security practices are secret. </p>
+<p>We take pains to inform every new employee that we have lots of ways of catching them, but we never tell them exactly how or what we are doing. </p>
+<p><em>In this case, it is quite alright to rely on the chilling effect of fear!</em></p>
+<h2>Principle of least privilege.</h2>
+<p>The second layer of security comes from access control. </p>
+<p>In the infosec and compsci fields, we have a rule of thumb we call [“Principle of Least Privilege.”][https://en.wikipedia.org/wiki/Principle_of_least_privilege]</p>
+<p>This just means, don’t give powers to people who don’t need it!</p>
+<p>In the bank example, you wouldn’t give the keys to the vault to the janitor. He only needs the keys to the front door and the bathroom. Where the teller may only need keys to the cash drawer and nothing else. In this way, the bank limits the number of people who have keys to the whole kingdom!</p>
+<p>In our case, Canvas gives us the ability to limit the power a particular user role has within the system. We spend a good deal of time deciding who gets the more dangerous powers, like manipulating grades. We accept that part of our job as good stewards is making these decisions. </p>
+<p>We <em>never</em> write blank checks when it comes to access!</p>
+<h2>Collect behavioral data.</h2>
+<p>The third layer of security comes from monitoring.</p>
+<p>We collect and analyze behavioral data from Canvas. There is a critical piece of data known as a page_view that represents a given user’s request for a system resource.</p>
+<p>This is what they look like:</p>
+<p><code>Working Network ID:
+    Foo1234
+Course Name:
+    Online@UCF Support Training
+Course Code:
+    Webcourses@UCF Support Training
+Course ID:
+726415  
+Datetime:
+    2017-02-27T16:07:09Z
+URL:
+    https://webcourses.ucf.edu/courses/726415/quizzes/918413
+Action:
+    Show
+IP:
+    131.170.15.255</code></p>
+<p>The general idea is that a user logs into Canvas, look around at a few pages and then logs out. Each step of the way a page view is logged. If they are just looking, it will be tagged as “show.” If they take an action, “action”, and if they edit, “edit”.</p>
+<p>We collect all of this data to get an idea of where the user was going and what they were doing in the system.</p>
+<p>In the metaphorical bank, this is the footage from the security cameras.</p>
+<h2>Auto flag suspicious behavior.</h2>
+<p>Once all of the behavioral data is collected, we scan it for suspicious activity.</p>
+<p>Think of this like the motion detectors in the bank.</p>
+<p>Our script parses through thousands of lines of page views and highlights courses and actions that meet certain criteria. I won’t go into specifics here, for security reasons, but we end up with a much shorter list of possibly suspicious page views. </p>
+<h2>Human inspect the results.</h2>
+<p>Every morning, with coffee, two employees briefly review the previous night’s results.</p>
+<p>This is like the bank managers reviewing the daily records.</p>
+<p>We use two people, so that a single reviewer can’t cheat.</p>
+<p>In the military, this is called “two person accountability.” If it’s good enough to guard state secrets, it’s good enough for us!</p>
+<p>If we see something suspicious, we raise the alarm to our superiors.</p>
+<p>99.9% of the time the results are harmless, but when something stands out, it is evaluated and passed up the organization to the executive team.</p>
+<h2>Good security requires adaptation.</h2>
+<p>Like any good bank, we are constantly evolving and improving our detection methods. </p>
+<p>I’ve only outlined the general framework here to highlight how to solve this problem. 
+The interesting thing about security is that it is a never ending game. The bad guys are always trying to figure out new methods and us good guys get to stop them.</p>
+<p>Since we are tasked with staying one step in front of the bad guys, we are starting to build a machine learning network to incorporate more adaptive filtering of the behavioral data. </p>
+<h2>The risk is worth the rewards.</h2>
+<p>We get amazing results from hiring student employees. It is so critical for university staff to stay connected in meaningful ways with the student population, so we can’t be afraid of letting them carry some of the weight.</p>
+<p>It can be scary trusting part time student employees, but with the right tools in place, it is a huge win for the university.</p>
+
+
+  </div>
+<!-- 
+  <div class="sidebar col-sm-4">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">work</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li><a href="http://totroops.com">ToTroops.com</a></li>
+          <li>Various DevOps tasks including Dockerizing everything.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">play</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li><a href="http://store.steampowered.com/app/413150/">Stardew Valley</a></li>
+          <li><a href="http://store.steampowered.com/app/252950/">Rocket League</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">tsundoku</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li>
+            <a href="http://www.amazon.com/gp/product/048629823X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=048629823X&linkCode=as2&tag=ifphilio-20&linkId=PPRH7G32X32SW3EE">Meditations (Dover Thrift Editions)</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=048629823X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            <a href="http://www.amazon.com/gp/product/0143125427/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0143125427&linkCode=as2&tag=ifphilio-20&linkId=OEU2IRXKO2JBG657">Lexicon: A Novel</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=0143125427" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            <a href="http://www.amazon.com/gp/product/014312417X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=014312417X&linkCode=as2&tag=ifphilio-20&linkId=FOFLZJLHTUEVUWRW">Mastery</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=ifphilio-20&l=as2&o=1&a=014312417X" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">contact</h3>
+      </div>
+      <div class="panel-body">
+        <p><a href="mailto:philiplicarter@gmail.com">philiplicarter@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/pub/philip-carter/53/828/779">linkedin</a></p>
+      </div>
+    </div>
+ -->
+
+  </div> 
+
+</div><!-- end container -->
+<script src="/static/js/script.js"></script>
+</body>
+</html>
