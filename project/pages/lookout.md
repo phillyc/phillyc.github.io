@@ -5,9 +5,9 @@ blurb: How do we know student employees aren't using their power to cheat?
 
 ## Intro
 
-We love working with student employees.
+We love working with student employees. 
 
-They have the best ideas because they feel the pain of daily student life. We need to give them elevated powers in Canvas so they can help us build awesome tools, but with great power comes great responsibility.
+They have the best ideas because they feel the pain of daily student life. We need to give them elevated powers in Canvas so they can help us build awesome tools, but with great power comes great responsibility. 
 
 *How do we know they aren't using this power to cheat?*
 
@@ -17,21 +17,21 @@ Similar to banks, we have a variety of security measures and principles in place
 
 I should point out that is is not only student employees who should be monitored, but anyone with elevated permissions in the system!
 
-## The chilling effect of monitoring
+## The chilling effect of monitoring.
 
 The first layer of security comes from training.
 
 We make a big point of educating every new hire on our ability to monitor and catch bad actors.
 
-We make no secret of our security principles, but our security practices are secret.
+We make no secret of our security principles, but our security practices are secret. 
 
 We take pains to inform every new employee that we have lots of ways of catching them, but we never tell them exactly how or what we are doing. 
 
 *In this case, it is quite alright to rely on the chilling effect of fear!*
 
-## Principle of least privilege
+## Principle of least privilege.
 
-The second layer of security comes from access control.
+The second layer of security comes from access control. 
 
 In the infosec and compsci fields, we have a rule of thumb we call [“Principle of Least Privilege.”][https://en.wikipedia.org/wiki/Principle_of_least_privilege]
 
@@ -43,7 +43,7 @@ In our case, Canvas gives us the ability to limit the power a particular user ro
 
 We *never* write blank checks when it comes to access!
 
-## Collect behavioral data
+## Collect behavioral data.
 
 The third layer of security comes from monitoring.
 
@@ -76,15 +76,15 @@ We collect all of this data to get an idea of where the user was going and what 
 
 In the metaphorical bank, this is the footage from the security cameras.
 
-## Auto flag suspicious behavior
+## Auto flag suspicious behavior.
 
 Once all of the behavioral data is collected, we scan it for suspicious activity.
 
 Think of this like the motion detectors in the bank.
 
-Our script parses through thousands of lines of page views and highlights courses and actions that meet certain criteria. I won’t go into specifics here, for security reasons, but we end up with a much shorter list of possibly suspicious page views.
+Our script parses through thousands of lines of page views and highlights courses and actions that meet certain criteria. I won’t go into specifics here, for security reasons, but we end up with a much shorter list of possibly suspicious page views. 
 
-## Human inspect the results
+## Human inspect the results.
 
 Every morning, with coffee, two employees briefly review the previous night’s results.
 
@@ -98,16 +98,16 @@ If we see something suspicious, we raise the alarm to our superiors.
 
 99.9% of the time the results are harmless, but when something stands out, it is evaluated and passed up the organization to the executive team.
 
-## Good security requires adaptation
+## Good security requires adaptation.
 
-Like any good bank, we are constantly evolving and improving our detection methods.
+Like any good bank, we are constantly evolving and improving our detection methods. 
 
-I’ve only outlined the general framework here to highlight how to solve this problem.
+I’ve only outlined the general framework here to highlight how to solve this problem. 
 The interesting thing about security is that it is a never ending game. The bad guys are always trying to figure out new methods and us good guys get to stop them.
 
-Since we are tasked with staying one step in front of the bad guys, we are starting to build a machine learning network to incorporate more adaptive filtering of the behavioral data.
+Since we are tasked with staying one step in front of the bad guys, we are starting to build a machine learning network to incorporate more adaptive filtering of the behavioral data. 
 
-## The risk is worth the rewards
+## The risk is worth the rewards.
 
 We get amazing results from hiring student employees. It is so critical for university staff to stay connected in meaningful ways with the student population, so we can’t be afraid of letting them carry some of the weight.
 
