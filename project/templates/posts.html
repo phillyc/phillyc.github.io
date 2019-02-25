@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="article-grid">
+    {% for page in pages %}
+    <h2>
+        <a href="{{ url_for('page', path=page.path) }}">
+            {{ page.meta.title }}
+        </a>
+    </h2>
+    <p><span class="glyphicon glyphicon-calendar"></span> {{ page.meta.date }}</p>
+
+    <!--     <div class="tags">
+        {% for tag in page.meta.tags %}
+            <a href="/tags/{{tag}}"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> {{ tag }}</span></a>
+        {% endfor %}
+    </div> -->
+
+    <p>{{ page.meta.blurb }}</p>
+
+    {% endfor %}
+</div>
+
+{% endblock %}
