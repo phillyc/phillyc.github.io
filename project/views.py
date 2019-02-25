@@ -22,7 +22,7 @@ def home():
 
 @app.route('/posts/')
 def posts():
-    published_pages = []
+    published_pages = [page for page in pages if 'date' in page.meta]
     sorted_posts = sorted(published_pages, reverse=True,
         key=lambda page: page.meta['date'])
     return render_template('posts.html', pages=sorted_posts)
