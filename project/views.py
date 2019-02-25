@@ -13,11 +13,7 @@ def experiments():
 
 @app.route('/')
 def home():
-    published_pages = [page for page in pages if 'date' in page.meta]
-    # Sort pages by date
-    sorted_posts = sorted(published_pages, reverse=True,
-        key=lambda page: page.meta['date'])
-    return render_template('index.html', pages=sorted_posts)
+    return render_template('index.html')
 
 
 @app.route('/posts/')

@@ -2,7 +2,7 @@
 
 Built using Frozen-Flask.
 
-[Original source from Steven Loria](http://stevenloria.com/hosting-static-flask-sites-for-free-on-github-pages/)
+[Original idea from Steven Loria](http://stevenloria.com/)
 
 ### How to build
 
@@ -23,4 +23,3 @@ Make code changes inside of /project
 Run `python freeze.py` from inside the virtualenv.
 
 Push the changes to master.
-

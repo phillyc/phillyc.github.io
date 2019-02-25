@@ -1,24 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="article-grid">
-  {% for page in pages %}
-    <h2>
-        <a href="{{ url_for('page', path=page.path) }}">
-            {{ page.meta.title }}
-        </a>
-    </h2>
-    <p><span class="glyphicon glyphicon-calendar"></span> {{ page.meta.date }}</p>
-
-<!--     <div class="tags">
-        {% for tag in page.meta.tags %}
-            <a href="/tags/{{tag}}"><span class="label label-primary"><span class="glyphicon glyphicon-tag"></span> {{ tag }}</span></a>
-        {% endfor %}
-    </div> -->
-
-    <p>{{ page.meta.blurb }}</p>
-
-  {% endfor %}
+<div class="">
+  <p>Hi, I'm Phil Carter.</p>
+  <p>I've spent over a decade professionally designing and developing software to help humans.</p> 
+  <p>I love web development, but I dabble in Machine Learning and Virtual Reality too.</p>
+  <p>I'm currently looking for work, checkout my <a href="https://www.linkedin.com/in/philip-carter-77982853/">linkdin profile!</a></p>
 </div>
+<div>
+  <p>projects</p>
+</div>
+
 
 {% endblock %}
