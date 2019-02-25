@@ -20,6 +20,14 @@ def home():
     return render_template('index.html', pages=sorted_posts)
 
 
+@app.route('/posts/')
+def posts():
+    published_pages = []
+    sorted_posts = sorted(published_pages, reverse=True,
+        key=lambda page: page.meta['date'])
+    return render_template('posts.html', pages=sorted_posts)
+
+
 @app.route('/<path:path>/')
 def page(path):
     # Path is the filename of a page, without the file extension
