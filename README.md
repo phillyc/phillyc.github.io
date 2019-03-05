@@ -32,4 +32,4 @@ Things I want to redesign:
 
 * Setup a dark-mode palette with selector switch.
 
-
+* Update to Bootstrap 4.x
