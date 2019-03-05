@@ -31,10 +31,6 @@ nav ul li a {
   text-transform: uppercase;
 }
 
-.content {
-  background-color: #FFF;
-}
-
 .article-grid > h2 > a {
   text-decoration: none;
   color: #545454;
@@ -59,4 +55,24 @@ nav ul li a {
 
 .float-left {
   float: left;
+}
+
+.most-white {
+  background-color: #FAF4E4;
+}
+
+.sunset {
+  background-color: #FB8B5D;
+}
+
+.ron-burgundy {
+  background-color: #B4665A;
+}
+
+.sunday-morning {
+  background-color: #89BCAB;
+}
+
+.barely-blue {
+  background-color: #3A444D;
 }
