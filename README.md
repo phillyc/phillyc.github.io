@@ -31,4 +31,3 @@ Things I want to redesign:
 * Make the nav bar float down the page when scrolling.
 
 * Setup a dark-mode palette with selector switch.
-
