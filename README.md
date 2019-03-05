@@ -23,3 +23,13 @@ Make code changes inside of /project
 Run `python freeze.py` from inside the virtualenv.
 
 Push the changes to master.
+
+### Redesign
+
+Things I want to redesign:
+
+* Make the nav bar float down the page when scrolling.
+
+* Setup a dark-mode palette with selector switch.
+
+
