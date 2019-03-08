@@ -1,9 +1,10 @@
 <!doctype html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Phil Carter</title>
+  <title>{% block page_title %}Phil Carter{% endblock %}</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -13,13 +14,15 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  
+  <!-- todo remove this -->
+  <link rel="stylesheet" href="../static/css/style.css"> 
+  <!-- {% block css %}{% endblock %} -->
 
 </head>
 <body class="linen">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">phillyc</a>
+    <a class="navbar-brand" href="{{ url_for('home') }}">phillyc</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,7 +31,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/posts/">
+          <a class="nav-link" href="{{ url_for('posts') }}">
             <i class="fas fa-pen"></i>
             Posts
           </a>
@@ -43,20 +46,19 @@
     </div>
   </nav>
 
-  
-
+  <!-- todo restore this -->
+  <!-- {% block content %}{% endblock %} -->
   <div class="container-fluid">
   
     <div class="jumbotron jumbotron-fluid intro">
       <div class="container">
         <h1 class="display-4">Hi!</h1>
         <h1 class="display-4">I'm Phil Carter</h1>
-        <p class="lead">I've spent over a decade professionally building web application software to help people solve
-          real problems.</p>
+        <p class="lead">I've spent over a decade professionally building web application software to help people solve real problems.</p>
         <hr class="my-4">
         <p>I'm currently looking for work:</p>
-        <p><a class="btn btn-lg sunday-morning" href="https://www.linkedin.com/in/philip-carter-77982853/"
-            role="button">check out my LinkedIn profile!</a></p>
+        <p><a class="btn btn-lg sunday-morning"
+            href="https://www.linkedin.com/in/philip-carter-77982853/" role="button">check out my LinkedIn profile!</a></p>
         </p>
       </div>
     </div>
@@ -65,12 +67,11 @@
       <h2>Latest Work</h2>
       <div class="row">
         <div class="col-sm-6">
-          <div class="card">
+          <div class="card" >
             <img class="card-img-top" src="https://via.placeholder.com/100x150" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Project 1</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
               </p>
               <a href="#" class="card-link">Try it!</a>
             </div>
@@ -78,11 +79,10 @@
         </div>
         <div class="col-sm-6">
           <div class="card"">
-              <img class=" card-img-top" src="https://via.placeholder.com/100x150" alt="Card image cap">
+            <img class="card-img-top" src="https://via.placeholder.com/100x150" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Project 2</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
               </p>
               <a href="#" class="card-link">Try it!</a>
             </div>
@@ -90,9 +90,9 @@
         </div>
       </div> <!-- Latest work row -->
     </div> <!-- Latest work container -->
-  
+
     <div class="container-fluid top-10">
-      <h2>Skills</h2>
+      <h2>Skills</h2> 
       <div class="row">
         <div class="col-sm-4">
           <ul class="list-group">
@@ -133,7 +133,7 @@
       </div> <!-- Skills row -->
     </div> <!-- Skills container -->
   
-  
+
     <div class="container-fluid top-10">
       <h2>About me</h2>
       <div class="row">
@@ -141,18 +141,18 @@
           <img src="https://via.placeholder.com/100x150" alt="Me!">
         </div>
         <div class="col-sm-6">
-          <p class="lead">Ever since I built my first PC with my brother at 13,
+          <p class="lead">Ever since I built my first PC with my brother at 13, 
             I've been in love with computers and technology.</p>
-          <p>I've spent the majority of my professional career working with technology.
-            My role in the Air Force put me in daily contact with high tech troubleshooting, planning,
+          <p>I've spent the majority of my professional career working with technology. 
+            My role in the Air Force put me in daily contact with high tech troubleshooting, planning, 
             and mission execution.</p>
-          <p>Post Air Force, I returned to Florida to finish my college education. I chose to specialize in
+          <p>Post Air Force, I returned to Florida to finish my college education. I chose to specialize in 
             Web Design, where I was able to leverage my technical skills gained from my time in the Air Force.</p>
-          <p>Before graduating, I took on jobs in PHP, HTML, CSS, and Javascript. After graduating, I landed
+          <p>Before graduating, I took on jobs in PHP, HTML, CSS, and Javascript. After graduating, I landed 
             a full time gig as a Javascript and Ruby on Rails engineer.</p>
-          <p>In the last 6 years, I've been a full stack Python engineer. I just love Python for it's ease
+          <p>In the last 6 years, I've been a full stack Python engineer. I just love Python for it's ease 
             of use and versatility. Seriously, what *can't* Python do?</p>
-          <p>I’m always interested in new technology, and learning new skills is one of my favorite pastimes.
+          <p>I’m always interested in new technology, and learning new skills is one of my favorite pastimes. 
             I’m even working on my Private Pilot’s License!</p>
         </div>
       </div>
@@ -169,7 +169,7 @@
         </div>
         <div class="col-sm-4">
           <p class="lead"><i class="fas fa-lightbulb"></i> Creativity</p>
-          <p>The most obvious solutions aren't always the right solutions. I enjoy working with stakeholders to
+          <p>The most obvious solutions aren't always the right solutions. I enjoy working with stakeholders to 
             engineer the best possible software for their complicated needs.
           </p>
         </div>
@@ -180,7 +180,7 @@
           </p>
         </div>
       </div>
-  
+      
     </div>
   
     <div class="container-fluid top-10">
@@ -203,9 +203,6 @@
   
   </div>
 
-
-
-
-  <script src="/static/js/script.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

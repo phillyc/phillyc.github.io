@@ -5,12 +5,6 @@
     box-sizing: border-box;
 }
 
-/* body {
-  font-family: sans-serif;
-  font-size: 17px;
-  font-weight: 300;
-} */
-
 h2 {
   font-size: 20px;
 }
@@ -55,6 +49,16 @@ nav ul li a {
 
 .float-left {
   float: left;
+}
+
+.top-10 {
+  margin-top: 10px;
+}
+
+/* Colors */
+
+.white-text {
+  color: white;
 }
 
 .linen {

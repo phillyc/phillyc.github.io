@@ -1,38 +1,163 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container-fluid">
-
-  <div class="jumbotron jumbotron-fluid intro">
-    <div class="container">
-      <h1 class="display-4">Hi, I'm Phil Carter</h1>
-      <p class="lead">I've spent over a decade professionally building software to help humans.</p>
-      <hr class="my-4">
-      <p>I'm currently looking for work: <a class="btn btn-primary btn-lg" href="https://www.linkedin.com/in/philip-carter-77982853/" role="button">check out my LinkedIn profile!</a></p>
+  <div class="container-fluid">
+  
+    <div class="jumbotron jumbotron-fluid intro">
+      <div class="container">
+        <h1 class="display-4">Hi!</h1>
+        <h1 class="display-4">I'm Phil Carter</h1>
+        <p class="lead">I've spent over a decade professionally building web application software to help people solve
+          real problems.</p>
+        <hr class="my-4">
+        <p>I'm currently looking for work:</p>
+        <p><a class="btn btn-lg sunday-morning" href="https://www.linkedin.com/in/philip-carter-77982853/"
+            role="button">check out my LinkedIn profile!</a></p>
+        </p>
+      </div>
     </div>
+  
+    <div class="container-fluid">
+      <h2>Latest Work</h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <img class="card-img-top" src="https://via.placeholder.com/100x150" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Project 1</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+              </p>
+              <a href="#" class="card-link">Try it!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card"">
+              <img class=" card-img-top" src="https://via.placeholder.com/100x150" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Project 2</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.
+              </p>
+              <a href="#" class="card-link">Try it!</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- Latest work row -->
+    </div> <!-- Latest work container -->
+  
+    <div class="container-fluid top-10">
+      <h2>Skills</h2>
+      <div class="row">
+        <div class="col-sm-4">
+          <ul class="list-group">
+            <li class="list-group-item sunday-morning">
+              <h5>Front-end</h5>
+            </li>
+            <li class="list-group-item">HTML5</li>
+            <li class="list-group-item">CSS</li>
+            <li class="list-group-item">Javascript</li>
+            <li class="list-group-item">jQuery</li>
+            <li class="list-group-item">Bootstrap ;)</li>
+          </ul>
+        </div>
+        <div class="col-sm-4">
+          <ul class="list-group">
+            <li class="list-group-item sunday-morning">
+              <h5>Back-end</h5>
+            </li>
+            <li class="list-group-item">Python</li>
+            <li class="list-group-item">Django</li>
+            <li class="list-group-item">SQL</li>
+            <li class="list-group-item">MySQL & PostgreSQL</li>
+            <li class="list-group-item">Sentry</li>
+          </ul>
+        </div>
+        <div class="col-sm-4">
+          <ul class="list-group">
+            <li class="list-group-item sunday-morning">
+              <h5>Dev-end</h5>
+            </li>
+            <li class="list-group-item">Git</li>
+            <li class="list-group-item">GitHub & GitLab</li>
+            <li class="list-group-item">JIRA</li>
+            <li class="list-group-item">Kanban (Trello)</li>
+            <li class="list-group-item">Agile & Scrum</li>
+          </ul>
+        </div>
+      </div> <!-- Skills row -->
+    </div> <!-- Skills container -->
+  
+  
+    <div class="container-fluid top-10">
+      <h2>About me</h2>
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="https://via.placeholder.com/100x150" alt="Me!">
+        </div>
+        <div class="col-sm-6">
+          <p class="lead">Ever since I built my first PC with my brother at 13,
+            I've been in love with computers and technology.</p>
+          <p>I've spent the majority of my professional career working with technology.
+            My role in the Air Force put me in daily contact with high tech troubleshooting, planning,
+            and mission execution.</p>
+          <p>Post Air Force, I returned to Florida to finish my college education. I chose to specialize in
+            Web Design, where I was able to leverage my technical skills gained from my time in the Air Force.</p>
+          <p>Before graduating, I took on jobs in PHP, HTML, CSS, and Javascript. After graduating, I landed
+            a full time gig as a Javascript and Ruby on Rails engineer.</p>
+          <p>In the last 6 years, I've been a full stack Python engineer. I just love Python for it's ease
+            of use and versatility. Seriously, what *can't* Python do?</p>
+          <p>I’m always interested in new technology, and learning new skills is one of my favorite pastimes.
+            I’m even working on my Private Pilot’s License!</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container-fluid top-10">
+      <h2>Why work with me?</h2>
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="lead"><i class="fas fa-heartbeat"></i> Empathy</p>
+          <p>I've worked with a huge range of people, so I always put myself in the user's shoes first. I love creating
+            solutions that work for many different cultures.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <p class="lead"><i class="fas fa-lightbulb"></i> Creativity</p>
+          <p>The most obvious solutions aren't always the right solutions. I enjoy working with stakeholders to
+            engineer the best possible software for their complicated needs.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <p class="lead"><i class="fas fa-burn"></i> Grit</p>
+          <p>My father taught me the value of hard work. I don't give up easily and will not rest until I have
+            a working solution. I may curse, but I'll get the job done. :D
+          </p>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="container-fluid top-10">
+      <h2>Interested in working together?</h2>
+      <div class="row">
+        <p class="mx-auto">
+          <a class="btn btn-lg ron-burgundy white-text" href="mailto:philiplicarter@gmail.com" role="button"><i
+              class="far fa-envelope"></i> Send an Email</a>
+        </p>
+        <p class="mx-auto">
+          <a class="btn btn-lg sunday-morning" href="https://www.linkedin.com/in/philip-carter-77982853/" role="button"><i
+              class="fab fa-linkedin-in"></i> Connect on LinkedIn</a>
+        </p>
+        <p class="mx-auto">
+          <a class="btn btn-lg barely-blue white-text" href="https://github.com/phillyc" role="button"><i
+              class="fab fa-github"></i> Follow on GitHub</a>
+        </p>
+      </div>
+    </div>
+  
   </div>
-
-  <div class="projects">
-    <p>projects</p>
-  </div>
-
-  <div class="skills">
-    <p>skills</p>
-  </div>
-
-  <div class="story">
-    <p>My long story</p>
-  </div>
-
-  <div class="pitch">
-    <p>Why work with me?</p>
-  </div>
-
-  <div class="contact">
-    <p>email, linkdin, github</p>
-  </div>
-
-</div>
 
 
 {% endblock %}
