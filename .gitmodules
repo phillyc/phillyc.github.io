@@ -1,0 +1,3 @@
+[submodule "rivermap"]
+	path = rivermap
+	url = https://github.com/phillyc/rivermap.git
