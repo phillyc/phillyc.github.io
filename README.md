@@ -22,7 +22,9 @@ This way I can version control this portfolio site separately from the experimen
 
 Using git's submodule feature, I can include the external folder in the /project directory.
 
-`git submodule add git@github.com:phillyc/rivermap.git`
+`git submodule add https://github.com/phillyc/rivermap.git`
+
+Use HTTPS not SSH, or the build will fail. Also, the target repo must be public.
 
 ## Local developement
 
