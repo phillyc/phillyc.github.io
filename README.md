@@ -6,7 +6,9 @@ Built using Frozen-Flask.
 
 ## How to build
 
-Run the freeze.py file to compile the .md files into HTML. Then push to master.
+Run the freeze.py file to compile the .md files into HTML. 
+
+Then push to master. This triggers a new build. If something fails, I'll get an email.
 
 ## How to write a new article
 
