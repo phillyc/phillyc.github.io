@@ -1,0 +1,3 @@
+[submodule "project/rivermap"]
+	path = project/rivermap
+	url = git@github.com:phillyc/rivermap.git

@@ -27,3 +27,7 @@ def page(path):
     # e.g. "first-post"
     page = pages.get_or_404(path)
     return render_template('page.html', page=page)
+
+@app.route('/rivermap')
+def rivermap():
+    return render_template('rivermap.html')
