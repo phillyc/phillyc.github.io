@@ -40,10 +40,14 @@ Run `python freeze.py` from inside the virtualenv.
 
 Push the changes to master.
 
-## Redesign
-
-Things I want to redesign:
-
-* Make the nav bar float down the page when scrolling.
-
-* Setup a dark-mode palette with selector switch.
+|## Redesign
+|
+|Things I want to redesign:
+|
+|* Make the nav bar float down the page when scrolling.
+|
+|* Setup a dark-mode palette with selector switch.
+|
+|### Design inspiration
+|
+|* [Ask HN: Favorite text heavy blogs that are a joy to read?](https://news.ycombinator.com/item?id=48466488) (100 points) — After ten years I'm working on a redesign of my personal tech blog. I want to look at some other blogs with good modern design.
