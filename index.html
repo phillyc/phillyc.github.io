@@ -7,15 +7,254 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    integrity="sha384-q8i/X+965Dz0rT7abK41JStQIAqVgRVzpbzo5smKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    integrity="sha384-UO2e0tCpHqdSJQ6hJtyKVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    integrity="sha384-JjSmVgyd0pXBZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  
-  <link rel="stylesheet" href="/static/css/style.css">
+  <!-- Particle canvas for hero section -->
+  <style>
+    /* --- Particle Canvas --- */
+    .particle-section { position: relative; }
+    #particle-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .particle-section > * { position: relative; z-index: 1; }
 
+    /* --- Hero accent text --- */
+    .accent-h1:first-of-type {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      margin-bottom: .15rem;
+    }
+  </style>
+
+  <!-- Dark engineer theme styles -->
+  <style>
+    /* Theme variables */
+    :root {
+      --bg-primary:       #0d1117;
+      --bg-secondary:     #161b22;
+      --bg-tertiary:      #21262d;
+      --border-color:     #30363d;
+      --text-primary:     #e6edf3;
+      --text-secondary:   #8b949e;
+      --accent-blue:      #58a6ff;
+      --mono:             'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    }
+
+    /* Override the old cream background */
+    body.linen { background: var(--bg-primary); }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6,
+    .navbar-brand, .card-title, .list-group-item-heading, .btn {
+      font-family: var(--mono);
+    }
+
+    a { color: var(--accent-blue); transition: color .15s ease; }
+    a:hover { color: #79c0ff; }
+    hr { border-top-color: var(--border-color); }
+
+    /* Navbar — glassmorphism dark */
+    .navbar {
+      background: rgba(22, 27, 34, .9) !important;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .navbar-brand {
+      color: var(--text-primary) !important;
+      font-size: 1.1rem;
+      letter-spacing: -.02em;
+    }
+    .navbar-brand:hover { color: var(--accent-blue) !important; }
+    .nav-link {
+      color: var(--text-secondary) !important;
+      font-weight: 500;
+      transition: color .15s;
+    }
+    .nav-link:hover { color: var(--text-primary) !important; }
+
+    /* Jumbotron / Hero */
+    .jumbotron {
+      background: transparent !important;
+      padding: 3rem 0 2rem !important;
+    }
+    .jumbotron.intro {
+      padding: 5rem 0 3rem !important;
+    }
+    .jumbotron .display-4 {
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .jumbotron .lead {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 540px;
+    }
+
+    /* Section headings with // prefix */
+    .container-fluid.top-10 h2 {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .top-10 {
+      margin-top: 3rem !important;
+      padding-bottom: 1rem;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-secondary) !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 8px !important;
+      box-shadow: none !important;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .card:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+      transform: translateY(-2px);
+    }
+    .card-body { padding: 1.25rem !important; }
+    .card-title { color: var(--text-primary); font-size: 1rem; }
+    .card-subtitle { color: var(--text-secondary) !important; font-size: .8rem; }
+    .card-text { color: var(--text-secondary); font-size: .9rem; }
+    .card-img, .card-img-top {
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      margin-bottom: .75rem;
+    }
+    .card-link {
+      color: var(--text-secondary) !important;
+      font-size: .85rem;
+      margin-right: .75rem;
+      transition: color .15s;
+    }
+    .card-link:hover { color: var(--accent-blue) !important; }
+    .card-link i { margin-right: .25rem; }
+
+    /* Skills list */
+    .list-group-item {
+      background-color: var(--bg-secondary) !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-secondary) !important;
+      font-size: .9rem;
+      padding: .5rem 1rem !important;
+    }
+    .list-group-item.sunday-morning {
+      color: var(--accent-blue) !important;
+      background-color: var(--bg-tertiary) !important;
+      border-color: var(--border-color) !important;
+      font-weight: 600;
+      font-size: .85rem;
+    }
+
+    /* Body paragraphs */
+    .container-fluid.top-10 p {
+      color: var(--text-secondary);
+      font-size: .95rem;
+      margin-bottom: .75rem;
+    }
+    .container-fluid.top-10 .lead {
+      color: var(--text-primary);
+      font-size: 1.05rem;
+    }
+    .container-fluid.top-10 img[src*="my_office"] {
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      max-width: 100%;
+    }
+
+    /* Why work with me — value icons */
+    .col-sm-4 > .lead i { color: var(--accent-blue); margin-right: .4rem; }
+
+    /* Buttons — dark gradient versions */
+    .btn {
+      border-radius: 6px !important;
+      font-family: var(--mono);
+      font-size: .85rem;
+      padding: .45rem 1.2rem !important;
+      font-weight: 500;
+      transition: background .2s, border-color .2s, transform .15s, box-shadow .15s;
+    }
+    .btn-lg { font-size: .95rem !important; }
+    body.linen .btn {
+      background-color: var(--bg-tertiary) !important;
+      color: var(--text-primary) !important;
+      border: 1px solid var(--border-color) !important;
+    }
+    body.linen .btn:hover {
+      background-color: #30363d !important;
+      color: var(--text-primary) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    }
+    /* Keep brand identity — darker, richer versions of original colors */
+    .btn.sunset {
+      background: linear-gradient(135deg, #2d1a18 0%, #3d2220 100%) !important;
+      border-color: #5a3028 !important;
+      color: #ffb088 !important;
+    }
+    .btn.sunset:hover {
+      background: linear-gradient(135deg, #3d2a28 0%, #4d3028 100%) !important;
+      color: #ffc8aa !important;
+    }
+    .btn.ron-burgundy {
+      background: linear-gradient(135deg, #2d1a1a 0%, #3d2020 100%) !important;
+      border-color: #5a2828 !important;
+      color: #ffa0a0 !important;
+    }
+    .btn.ron-burgundy:hover {
+      background: linear-gradient(135deg, #3d2222 0%, #502828 100%) !important;
+      color: #ffb8b8 !important;
+    }
+    .btn.sunday-morning {
+      background: linear-gradient(135deg, #1a2d28 0%, #203d35 100%) !important;
+      border-color: #285a4a !important;
+      color: #88ddbb !important;
+    }
+    .btn.sunday-morning:hover {
+      background: linear-gradient(135deg, #203d35 0%, #285045 100%) !important;
+      color: #99eecc !important;
+    }
+    .btn.barely-blue {
+      background: linear-gradient(135deg, #1a2030 0%, #202840 100%) !important;
+      border-color: #283858 !important;
+      color: #88bbee !important;
+    }
+    .btn.barely-blue:hover {
+      background: linear-gradient(135deg, #202840 0%, #283858 100%) !important;
+      color: #99ccee !important;
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .jumbotron { padding: 2rem 0 1.5rem !important; }
+      .jumbotron .display-4 { font-size: 1.4rem !important; }
+      .top-10 { margin-top: 2rem !important; }
+      .col-sm-4 { margin-bottom: 1.5rem; }
+    }
+  </style>
 </head>
 <body class="linen">
 
@@ -44,13 +283,15 @@
     </div>
   </nav>
 
-  
+
 
   <div class="container-fluid">
-  
-    <div class="jumbotron jumbotron-fluid intro">
+
+    <!-- Particle canvas behind the hero -->
+    <div class="particle-section jumbotron jumbotron-fluid intro">
+      <canvas id="particle-canvas"></canvas>
       <div class="container">
-        <h1 class="display-4">Hi!</h1>
+        <h1 class="display-4 accent-h1">Hi!</h1>
         <h1 class="display-4">I'm Phil Carter</h1>
         <p class="lead">I've spent over a decade professionally building web application software to help people solve
           real problems.</p>
@@ -58,11 +299,10 @@
         <p>I'm currently looking for work:</p>
         <p><a class="btn btn-lg sunday-morning" href="https://www.linkedin.com/in/philip-carter-77982853/"
             role="button">check out my LinkedIn profile!</a></p>
-        </p>
       </div>
     </div>
-  
-    <div class="container-fluid">
+
+    <div class="container-fluid reveal">
       <h2>Latest Work</h2>
       <div class="row">
         <div class="col-sm-6">
@@ -86,7 +326,7 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card"">
+          <div class="card">
             <div class="card-body">
               <h5 class="card-title">Today - a todo app</h5>
               <h6 class="card-subtitle mb-2 text-muted">Python, Django, and Heroku.</h6>
@@ -100,8 +340,8 @@
         </div>
       </div> <!-- Latest work row -->
     </div> <!-- Latest work container -->
-  
-    <div class="container-fluid top-10">
+
+    <div class="container-fluid top-10 reveal">
       <h2>Skills</h2>
       <div class="row">
         <div class="col-sm-4">
@@ -124,7 +364,7 @@
             <li class="list-group-item">Python</li>
             <li class="list-group-item">Django</li>
             <li class="list-group-item">SQL</li>
-            <li class="list-group-item">MySQL & PostgreSQL</li>
+            <li class="list-group-item">MySQL &amp; PostgreSQL</li>
             <li class="list-group-item">Sentry</li>
           </ul>
         </div>
@@ -134,17 +374,17 @@
               <h5>Dev-end</h5>
             </li>
             <li class="list-group-item">Git</li>
-            <li class="list-group-item">GitHub & GitLab</li>
+            <li class="list-group-item">GitHub &amp; GitLab</li>
             <li class="list-group-item">JIRA</li>
             <li class="list-group-item">Kanban (Trello)</li>
-            <li class="list-group-item">Agile & Scrum</li>
+            <li class="list-group-item">Agile &amp; Scrum</li>
           </ul>
         </div>
       </div> <!-- Skills row -->
     </div> <!-- Skills container -->
-  
-  
-    <div class="container-fluid top-10">
+
+
+    <div class="container-fluid top-10 reveal">
       <h2>About me</h2>
       <div class="row">
         <div class="col-sm-6">
@@ -162,13 +402,13 @@
             a full time gig as a Javascript and Ruby on Rails engineer.</p>
           <p>In the last 6 years, I've been a full stack Python engineer. I just love Python for its ease
             of use and versatility. Seriously, what *can't* Python do?</p>
-          <p>I’m always interested in new technology, and learning new skills is one of my favorite pastimes.
-            I’m even working on my Private Pilot’s License!</p>
+          <p>I'm always interested in new technology, and learning new skills is one of my favorite pastimes.
+            I'm even working on my Private Pilot's License!</p>
         </div>
       </div>
     </div>
-  
-    <div class="container-fluid top-10">
+
+    <div class="container-fluid top-10 reveal">
       <h2>Why work with me?</h2>
       <div class="row">
         <div class="col-sm-4">
@@ -190,10 +430,10 @@
           </p>
         </div>
       </div>
-  
+
     </div>
-  
-    <div class="container-fluid top-10">
+
+    <div class="container-fluid top-10 reveal">
       <h2>Interested in working together?</h2>
       <div class="row">
         <p class="mx-auto">
@@ -210,12 +450,101 @@
         </p>
       </div>
     </div>
-  
+
   </div>
 
-
-
-
   <script src="/static/js/script.js"></script>
+
+  <!-- Particle animation + scroll reveal -->
+  <script>
+    // Particle canvas — connected nodes network
+    (function() {
+      const canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w, h, nodes, mouse = { x: null, y: null };
+
+      function resize() {
+        const parent = canvas.parentElement;
+        w = canvas.width = parent.offsetWidth;
+        h = canvas.height = parent.offsetHeight;
+      }
+
+      function initNodes() {
+        const count = Math.floor((w * h) / 15000); // density-based count
+        nodes = [];
+        for (let i = 0; i < count; i++) {
+          nodes.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - .5) * .4,
+            vy: (Math.random() - .5) * .4,
+            r: Math.random() * 1.5 + .5
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        const maxDist = 120;
+
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          // Move
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+
+          // Draw node
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(88,166,255,.3)';
+          ctx.fill();
+
+          // Draw connections
+          for (let j = i + 1; j < nodes.length; j++) {
+            const m = nodes[j];
+            const dx = n.x - m.x, dy = n.y - m.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y);
+              ctx.lineTo(m.x, m.y);
+              ctx.strokeStyle = `rgba(88,166,255,${.12 * (1 - dist / maxDist)})`;
+              ctx.lineWidth = .5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', () => { resize(); initNodes(); });
+      canvas.parentElement.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      resize();
+      initNodes();
+      draw();
+    })();
+
+    // Scroll-reveal via IntersectionObserver
+    (function() {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: .15 });
+      reveals.forEach(el => observer.observe(el));
+    })();
+  </script>
 </body>
 </html>
