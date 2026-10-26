@@ -371,6 +371,32 @@
         </div>
 
       </div> <!-- Latest work row -->
+
+      <!-- Butler Bet -->
+      <div class="row mt-4">
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Butler Bet &mdash; "Can I Buy A Butler Yet?"</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Vanilla HTML/CSS, GitHub Pages, Hermes Agent.</h6>
+              <a href="https://philc.io/butler-bet/" target="_blank" rel="noopener">
+                <img class="card-img" src="/static/img/butler-bet.png" alt="Butler Bet — 'Can I Buy A Butler Yet?' homepage screenshot.">
+              </a>
+              <p class="card-text"><strong>Stack.</strong> Fully static single-page site: hand-written HTML/CSS with a custom dark theme, no framework, no build step, no backend or database &mdash; state lives in the HTML itself. Hosted on GitHub Pages under philc.io, deployed automatically via GitHub Actions with OIDC auth. Operated end-to-end by Hermes Agent (Nous Research), which drives a headless Chrome browser to scrape robot manufacturers and commits results as "Nyx (Butler Bot)".</p>
+              <p class="card-text"><strong>Agent loop.</strong> A single scheduled Hermes cron job (Sundays 17:00 UTC) fires an autonomous agent with a skill-encoded research playbook: timestamp-script state injection, a date check to stay idempotent, and a material-change gate that only commits when a robot's status actually changes. Observability via git history, last-check.txt, Discord delivery, and GoatCounter analytics.</p>
+              <div class="row">
+                <div class="col-sm">
+                  <a href="https://philc.io/butler-bet/" target="_blank" rel="noopener" class="card-link"><i class="fas fa-external-link-alt"></i> Visit</a>
+                </div>
+                <div class="col-sm">
+                  <a href="https://github.com/phillyc/butler-bet" class="card-link"><i class="fas fa-code-branch"></i> Github source</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- Butler Bet row -->
+
     </div> <!-- Latest work container -->
 
     <div class="container-fluid top-10 reveal">
