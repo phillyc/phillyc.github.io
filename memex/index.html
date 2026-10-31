@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memex — Study Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app-root">
+    <!-- ═══ LOGIN SCREEN ═══ -->
+    <div id="screen-login" class="screen active">
+      <div class="login-container">
+        <div class="login-card">
+          <div class="login-logo">🧠</div>
+          <h1 class="login-title">Memex</h1>
+          <p class="login-subtitle">Your personal study deck</p>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-user">Username</label>
+              <input type="text" id="login-user" placeholder="Enter username" autocomplete="username" autofocus>
+            </div>
+            <div class="form-group">
+              <label for="login-pass">Password</label>
+              <input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password">
+            </div>
+            <div id="login-error" class="form-error"></div>
+            <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div id="screen-dashboard" class="screen">
+      <header class="app-header">
+        <div class="header-left">
+          <span class="header-logo">🧠</span>
+          <h1 class="header-title">Memex</h1>
+        </div>
+        <div class="header-right">
+          <span id="user-name" class="header-user"></span>
+          <button id="logout-btn" class="btn btn-ghost" title="Sign out">Sign Out</button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <section class="stats-bar">
+          <div class="stat">
+            <span class="stat-value" id="stats-total">0</span>
+            <span class="stat-label">Total Cards</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="stats-reviewed">0</span>
+            <span class="stat-label">Reviewed</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="stats-due">0</span>
+            <span class="stat-label">Due Now</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="stats-mature">0</span>
+            <span class="stat-label">Mature</span>
+          </div>
+        </section>
+
+        <section class="categories-section">
+          <h2 class="section-title">Study Decks</h2>
+          <div id="category-list" class="category-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ═══ STUDY SCREEN ═══ -->
+    <div id="screen-study" class="screen">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="study-back-btn" class="btn btn-ghost" title="Back to dashboard">← Back</button>
+          <span id="card-category" class="header-category"></span>
+        </div>
+        <div class="header-right">
+          <button id="study-reset-btn" class="btn btn-ghost" title="Reset progress">Reset</button>
+        </div>
+      </header>
+
+      <main class="study-content">
+        <div id="study-progress-text" class="study-progress"></div>
+
+        <div id="study-card" class="card-container">
+          <div class="card" onclick="document.querySelector('#card-reveal-btn')?.click()">
+            <div class="card-front" id="card-front"></div>
+            <div class="card-back hidden" id="card-back"></div>
+          </div>
+          <div id="card-last-reviewed" class="card-review-info hidden"></div>
+
+          <div id="card-reveal" class="card-actions">
+            <button id="card-reveal-btn" class="btn btn-primary btn-full">Reveal Answer</button>
+            <p class="card-hint">Press Space or click the card</p>
+          </div>
+
+          <div id="card-rate" class="card-actions hidden">
+            <p class="rate-label">How well did you know this?</p>
+            <div class="rate-buttons">
+              <button class="btn rate-btn rate-again" data-quality="0">
+                <span class="rate-key">0</span> Again
+              </button>
+              <button class="btn rate-btn rate-hard" data-quality="1">
+                <span class="rate-key">1</span> Hard
+              </button>
+              <button class="btn rate-btn rate-good" data-quality="2">
+                <span class="rate-key">2</span> Good
+              </button>
+              <button class="btn rate-btn rate-easy" data-quality="3">
+                <span class="rate-key">3</span> Easy
+              </button>
+            </div>
+            <p class="card-hint">Press 0, 1, 2, or 3</p>
+          </div>
+        </div>
+
+        <div id="study-done" class="study-done hidden">
+          <div class="done-icon">🎉</div>
+          <h2>All caught up!</h2>
+          <p>You've reviewed every card in this deck.</p>
+          <button id="study-done-btn" class="btn btn-primary">Back to Dashboard</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

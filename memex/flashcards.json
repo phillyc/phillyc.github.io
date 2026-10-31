@@ -1,0 +1,163 @@
+{
+  "generated": "2026-10-31T22:45:17.242Z",
+  "totalCards": 19,
+  "categories": [
+    "bash"
+  ],
+  "flashcards": {
+    "bash": [
+      {
+        "id": "epu6m9",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "bash: ## Displays network-related information such as open connections, open socket ports, etc.",
+        "back": "netstat",
+        "lastReviewed": "2025-01-26"
+      },
+      {
+        "id": "z66z8f",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "This git command manages the information recorded in the reflogs.",
+        "back": "git reflog",
+        "lastReviewed": "2026-08-05"
+      },
+      {
+        "id": "oi9obb",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "bash: Estimate and summarize file and directory space usage",
+        "back": "Disk Usage\n`du -shc *`\n-s display an entry for each file\n-h human-readable\n-c cumulative total\nstar means everything in this directory",
+        "lastReviewed": "2025-01-24"
+      },
+      {
+        "id": "fhvful",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "What is the purpose of a UNIX link?",
+        "back": "**A link in UNIX is a pointer to a file.**\nLike pointers in any programming language, links in UNIX are pointers pointing to a file or a directory.\nCreating links is a kind of shortcut to access a file. Links allow more than one file name to refer to the same file, elsewhere.\nThere are two types of link, hard and soft (or symbolic).\nThe command is “ln”",
+        "lastReviewed": "2026-05-24"
+      },
+      {
+        "id": "jlmrd9",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Predict: `$ command &`",
+        "back": "Run command in the background.\nCommand will still end when the session is closed.",
+        "lastReviewed": "2026-07-03"
+      },
+      {
+        "id": "n9uzb6",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Predict: `$ command & disown`",
+        "back": "Run command in the background.\nThen disown the process from this user without terminating the command.",
+        "lastReviewed": "2025-01-31"
+      },
+      {
+        "id": "eqicw1",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Predict: `$ command &>/dev/null &`",
+        "back": "Run command in the background and print output to /dev/null instead of terminal.",
+        "lastReviewed": "2026-11-30"
+      },
+      {
+        "id": "86wm4n",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Predict: `$ nohup command &>/dev/null &`",
+        "back": "nohup bypasses the HUP (hang up) signal.\nCommand redirection to /dev/null and `&` pushes the task to the background.",
+        "lastReviewed": "2025-01-27"
+      },
+      {
+        "id": "mon2wg",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "How do you bypass the signal hangup?",
+        "back": "nohup prevents commands from receiving the HUP signal.",
+        "lastReviewed": "2025-02-06"
+      },
+      {
+        "id": "3qaowu",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Where is the ssh config located?",
+        "back": "`~/.ssh/config` Use this to setup aliases for ssh or other config options.",
+        "lastReviewed": "2028-06-14"
+      },
+      {
+        "id": "1w2cxw",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "How do you view env vars in linux?",
+        "back": "`printenv` or `env`",
+        "lastReviewed": "2026-11-05"
+      },
+      {
+        "id": "lkakzs",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "How do you set env vars in linux?",
+        "back": "The `SET` command changes run-time configuration parameters.\nShortcut: `$ export FOO='thing'",
+        "lastReviewed": "2025-01-26"
+      },
+      {
+        "id": "e83441",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "How do you find out what is using port 80?",
+        "back": "`sudo netstat -peanut | grep :80`",
+        "lastReviewed": "2025-02-23"
+      },
+      {
+        "id": "tcd4jc",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "How do you create a softlink aka symlink?",
+        "back": "`$ ln -s source_file target_file`",
+        "lastReviewed": "2025-01-30"
+      },
+      {
+        "id": "r52m19",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Go back to the previous working directory?",
+        "back": "`$ cd -`",
+        "lastReviewed": "2025-08-13"
+      },
+      {
+        "id": "q49z0t",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "In bash, use what command to search through command history?",
+        "back": "`ctrl-r`",
+        "lastReviewed": "2025-02-27"
+      },
+      {
+        "id": "g60vhq",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Count the number of lines.",
+        "back": "`$ wc -l <file>`",
+        "lastReviewed": "2028-01-06"
+      },
+      {
+        "id": "4iyzvf",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "Repeat the last command with a replacement.",
+        "back": "`$ ^find^replace`",
+        "lastReviewed": "2028-02-21"
+      },
+      {
+        "id": "pdh2d0",
+        "category": "bash",
+        "sourceFile": "bash.md",
+        "front": "What is the meaning of a dot before a command in the shell?",
+        "back": "A dot is the same as `source`.\n`$ . .analyst-test` == `$ source .analyst-test`",
+        "lastReviewed": "2026-07-30"
+      }
+    ]
+  }
+}
