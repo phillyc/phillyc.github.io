@@ -206,7 +206,7 @@
   function showScreen(id) {
     var _a;
     $$(".screen.active").forEach((el) => el.classList.remove("active"));
-    (_a = $(`#${id}`)) == null ? void 0 : _a.classList.add("active");
+    (_a = $(`#screen-${id}`)) == null ? void 0 : _a.classList.add("active");
   }
   function handleLogin(e) {
     return __async(this, null, function* () {
