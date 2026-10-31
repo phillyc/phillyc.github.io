@@ -205,7 +205,7 @@
   var $$ = (s) => document.querySelectorAll(s);
   function showScreen(id) {
     var _a;
-    $$(".screen").forEach((el) => el.classList.remove("active"));
+    $$(".screen.active").forEach((el) => el.classList.remove("active"));
     (_a = $(`#${id}`)) == null ? void 0 : _a.classList.add("active");
   }
   function handleLogin(e) {
@@ -357,8 +357,6 @@
       });
       if (isAuthenticated()) {
         renderDashboard();
-      } else {
-        showScreen("login");
       }
     });
   }
