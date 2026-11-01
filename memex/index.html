@@ -31,16 +31,20 @@
       </div>
     </div>
 
-    <!-- ═══ DASHBOARD ═══ -->
+    <!-- ═══ DASHBOARD (Review) ═══ -->
     <div id="screen-dashboard" class="screen">
       <header class="app-header">
         <div class="header-left">
           <span class="header-logo">🧠</span>
           <h1 class="header-title">Memex</h1>
+          <nav class="view-nav">
+            <button class="nav-btn" data-view="read">Read</button>
+            <button class="nav-btn active" data-view="review">Review</button>
+          </nav>
         </div>
         <div class="header-right">
-          <span id="user-name" class="header-user"></span>
-          <button id="logout-btn" class="btn btn-ghost" title="Sign out">Sign Out</button>
+          <span id="user-name" class="header-user user-name"></span>
+          <button class="btn btn-ghost logout-btn" title="Sign out">Sign Out</button>
         </div>
       </header>
 
@@ -71,12 +75,18 @@
       </main>
     </div>
 
-    <!-- ═══ STUDY SCREEN ═══ -->
+    <!-- ═══ STUDY SCREEN (Review → deck) ═══ -->
     <div id="screen-study" class="screen">
       <header class="app-header">
         <div class="header-left">
+          <span class="header-logo">🧠</span>
+          <h1 class="header-title">Memex</h1>
           <button id="study-back-btn" class="btn btn-ghost" title="Back to dashboard">← Back</button>
           <span id="card-category" class="header-category"></span>
+          <nav class="view-nav">
+            <button class="nav-btn" data-view="read">Read</button>
+            <button class="nav-btn active" data-view="review">Review</button>
+          </nav>
         </div>
         <div class="header-right">
           <button id="study-reset-btn" class="btn btn-ghost" title="Reset progress">Reset</button>
@@ -123,6 +133,41 @@
           <h2>All caught up!</h2>
           <p>You've reviewed every card in this deck.</p>
           <button id="study-done-btn" class="btn btn-primary">Back to Dashboard</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- ═══ READ SCREEN (notes) ═══ -->
+    <div id="screen-read" class="screen">
+      <header class="app-header">
+        <div class="header-left">
+          <span class="header-logo">🧠</span>
+          <h1 class="header-title">Memex</h1>
+          <nav class="view-nav">
+            <button class="nav-btn active" data-view="read">Read</button>
+            <button class="nav-btn" data-view="review">Review</button>
+          </nav>
+        </div>
+        <div class="header-right">
+          <span id="read-user-name" class="header-user user-name"></span>
+          <button class="btn btn-ghost logout-btn" title="Sign out">Sign Out</button>
+        </div>
+      </header>
+
+      <main class="read-content">
+        <div id="read-list-view" class="read-list-view">
+          <div class="read-heading">
+            <h2 class="section-title">Notes</h2>
+            <p class="read-subtitle">The markdown notes behind your flashcards.</p>
+          </div>
+          <div id="notes-list" class="notes-list">
+            <div class="notes-loading">Loading notes…</div>
+          </div>
+        </div>
+
+        <div id="read-detail-view" class="read-detail-view hidden">
+          <button id="note-back-btn" class="btn btn-ghost note-back-btn">← Back to notes</button>
+          <div id="note-detail"></div>
         </div>
       </main>
     </div>
