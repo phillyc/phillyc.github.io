@@ -2214,6 +2214,54 @@ ${content}</tr>
       return aDue - bDue;
     });
   }
+  var FACTOID_KEY = "memex:factoid-tags";
+  function loadFactoidData() {
+    try {
+      const raw = localStorage.getItem(FACTOID_KEY);
+      if (raw) {
+        const data2 = JSON.parse(raw);
+        if (data2.version === 1 && Array.isArray(data2.tags)) return data2;
+      }
+    } catch (e) {
+    }
+    return { version: 1, tags: [] };
+  }
+  function saveFactoidData(data2) {
+    localStorage.setItem(FACTOID_KEY, JSON.stringify(data2));
+  }
+  function getFactoidTags(noteId) {
+    const data2 = loadFactoidData();
+    return data2.tags.filter((t) => t.noteId === noteId);
+  }
+  function addFactoidTag(noteId, text, tag2) {
+    const data2 = loadFactoidData();
+    const raw = `${noteId}::${text}`;
+    let hash = 0;
+    for (let i = 0; i < raw.length; i++) {
+      const c = raw.charCodeAt(i);
+      hash = (hash << 5) - hash + c;
+      hash = hash & hash;
+    }
+    const id = `ft_${Math.abs(hash).toString(36)}_${Date.now().toString(36)}`;
+    const tagEntry = {
+      id,
+      noteId,
+      text,
+      tag: tag2,
+      created: (/* @__PURE__ */ new Date()).toISOString()
+    };
+    const exists = data2.tags.some((t) => t.noteId === noteId && t.text === text && t.tag === tag2);
+    if (!exists) {
+      data2.tags.push(tagEntry);
+      saveFactoidData(data2);
+    }
+    return tagEntry;
+  }
+  function removeFactoidTag(factoidId) {
+    const data2 = loadFactoidData();
+    data2.tags = data2.tags.filter((t) => t.id !== factoidId);
+    saveFactoidData(data2);
+  }
 
   // src/app.ts
   var data = null;
@@ -2367,7 +2415,7 @@ ${content}</tr>
           notesData.notes.forEach((n) => notesByPath.set(n.id, n));
         } catch (err) {
           console.error("Failed to load notes.json:", err);
-          notesData = { generated: "", totalNotes: 0, notes: [] };
+          notesData = { generated: "", totalNotes: 0, memexNotes: [], notes: [] };
         }
       }
       return notesData.notes;
@@ -2441,6 +2489,209 @@ ${content}</tr>
   function closeNote() {
     showReadList();
   }
+  function highlightFactoids(el, factoids) {
+    if (!factoids.length) return;
+    for (const ft of factoids) {
+      highlightTextInNode(el, ft.text, ft.id, ft.tag);
+    }
+  }
+  function highlightTextInNode(node, text, factoidId, tag2) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const idx = node.textContent.indexOf(text);
+      if (idx !== -1) {
+        const span = document.createElement("span");
+        span.className = "factoid-highlight";
+        span.dataset.factoidId = factoidId;
+        span.dataset.tag = tag2;
+        span.textContent = text;
+        const before = node.textContent.substring(0, idx);
+        const after = node.textContent.substring(idx + text.length);
+        const fragment = document.createDocumentFragment();
+        if (before) fragment.appendChild(document.createTextNode(before));
+        fragment.appendChild(span);
+        if (after) fragment.appendChild(document.createTextNode(after));
+        node.parentNode.replaceChild(fragment, node);
+        return true;
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== "SCRIPT" && node.tagName !== "STYLE" && node.tagName !== "FACTIOD-HIGHLIGHT") {
+      for (let i = 0; i < node.childNodes.length; i++) {
+        if (highlightTextInNode(node.childNodes[i], text, factoidId, tag2)) return true;
+      }
+    }
+    return false;
+  }
+  function renderFactoidList(container, factoids) {
+    if (!factoids.length) {
+      container.innerHTML = `<div class="factoid-empty">No factoids tagged yet. Select text in the note and click "Tag #flashcard".</div>`;
+      return;
+    }
+    let html2 = `<div class="factoid-list-heading">${factoids.length} Tagged Factoid${factoids.length === 1 ? "" : "s"}</div>`;
+    for (const ft of factoids) {
+      const escaped = escapeHtml(ft.text);
+      html2 += `
+      <div class="factoid-list-item" data-factoid-id="${escapeHtml(ft.id)}">
+        <span class="factoid-tag-badge-small">${escapeHtml(ft.tag)}</span>
+        <span class="factoid-list-text">${escaped}</span>
+        <button class="btn btn-ghost factoid-untag-btn" data-factoid-id="${escapeHtml(ft.id)}" title="Remove tag">&times;</button>
+      </div>
+    `;
+    }
+    container.innerHTML = html2;
+    container.querySelectorAll(".factoid-untag-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        var _a;
+        const id = e.currentTarget.dataset.factoidId;
+        if (id) {
+          removeFactoidTag(id);
+          const noteId = (_a = document.getElementById("memex-note-detail")) == null ? void 0 : _a.dataset.currentNoteId;
+          if (noteId) openMemexNote(noteId);
+        }
+      });
+    });
+  }
+  function showMemex() {
+    showScreen("memex");
+    setNav("memex");
+    syncUser();
+    showMemexList();
+    if (!notesRendered) {
+      loadNotes().then(() => renderMemexList());
+    } else {
+      renderMemexList();
+    }
+  }
+  function showMemexList() {
+    const listView = document.getElementById("memex-list-view");
+    const detailView = document.getElementById("memex-detail-view");
+    if (listView) listView.classList.remove("hidden");
+    if (detailView) detailView.classList.add("hidden");
+    const content = $(".read-content");
+    if (content) content.scrollTop = 0;
+  }
+  function renderMemexList() {
+    var _a;
+    const list2 = document.getElementById("memex-notes-list");
+    if (!list2) return;
+    const memexNotes = (_a = notesData == null ? void 0 : notesData.notes.filter((n) => n.memexTagged)) != null ? _a : [];
+    if (memexNotes.length === 0) {
+      list2.innerHTML = `<p class="notes-empty">No #memex-tagged notes found. Tag a note with <code>#memex</code> at the top of the file to add it here.</p>`;
+      return;
+    }
+    list2.innerHTML = "";
+    for (const note of memexNotes) {
+      const btn = document.createElement("button");
+      btn.className = "note-item";
+      btn.dataset.noteId = note.id;
+      const dir = note.dir ? `<span class="note-dir">${escapeHtml(note.dir)}/</span>` : "";
+      const factoidCount = getFactoidTags(note.id).length;
+      const badgeHtml = factoidCount > 0 ? `<span class="memex-badge">#memex</span><span class="factoid-count-badge">${factoidCount} tagged</span>` : `<span class="memex-badge">#memex</span>`;
+      btn.innerHTML = `
+      <span class="note-main">
+        <span class="note-title">${escapeHtml(note.title)}</span>
+        <span class="note-path">${dir}${escapeHtml(note.path)}</span>
+      </span>
+      <span class="note-count">${badgeHtml}</span>
+    `;
+      btn.addEventListener("click", () => openMemexNote(note.id));
+      list2.appendChild(btn);
+    }
+  }
+  function openMemexNote(noteId) {
+    var _a, _b;
+    const note = notesByPath.get(noteId);
+    if (!note) return;
+    const factoids = getFactoidTags(noteId);
+    marked.use({ gfm: true, breaks: true });
+    const html2 = marked.parse(note.content, { async: false });
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html2;
+    highlightFactoids(wrapper, factoids);
+    const highlightedHtml = wrapper.innerHTML;
+    const detail = document.getElementById("memex-note-detail");
+    if (!detail) return;
+    detail.dataset.currentNoteId = noteId;
+    detail.innerHTML = `
+    <h1 class="note-detail-title">${escapeHtml(note.title)}</h1>
+    <div class="note-detail-meta">
+      ${escapeHtml(note.path)} \xB7 <span class="memex-badge">#memex</span>
+      ${factoids.length > 0 ? `\xB7 <span class="factoid-count-badge">${factoids.length} tagged</span>` : ""}
+    </div>
+    <div class="markdown-body" id="memex-note-body">${highlightedHtml}</div>
+    <div id="factoid-toolbar" class="factoid-toolbar hidden">
+      <button id="factoid-tag-btn" class="btn btn-primary">Tag #flashcard</button>
+      <button id="factoid-tag-cancel" class="btn btn-ghost" title="Cancel">Cancel</button>
+    </div>
+    <div id="factoid-list" class="factoid-list"></div>
+  `;
+    const factoidListEl = document.getElementById("factoid-list");
+    if (factoidListEl) renderFactoidList(factoidListEl, factoids);
+    const bodyEl = document.getElementById("memex-note-body");
+    if (bodyEl) {
+      bodyEl.addEventListener("mouseup", () => {
+        showFactoidToolbar(noteId);
+      });
+      bodyEl.addEventListener("touchend", () => {
+        setTimeout(() => showFactoidToolbar(noteId), 200);
+      });
+    }
+    (_a = document.getElementById("factoid-tag-btn")) == null ? void 0 : _a.addEventListener("click", () => {
+      const selection = window.getSelection();
+      const text = selection == null ? void 0 : selection.toString().trim();
+      if (text && text.length > 0) {
+        addFactoidTag(noteId, text, "#flashcard");
+        selection == null ? void 0 : selection.removeAllRanges();
+        openMemexNote(noteId);
+      }
+    });
+    (_b = document.getElementById("factoid-tag-cancel")) == null ? void 0 : _b.addEventListener("click", () => {
+      var _a2;
+      const toolbar = document.getElementById("factoid-toolbar");
+      if (toolbar) toolbar.classList.add("hidden");
+      (_a2 = window.getSelection()) == null ? void 0 : _a2.removeAllRanges();
+    });
+    const listView = document.getElementById("memex-list-view");
+    const detailView = document.getElementById("memex-detail-view");
+    if (listView) listView.classList.add("hidden");
+    if (detailView) detailView.classList.remove("hidden");
+    const content = $(".read-content");
+    if (content) content.scrollTop = 0;
+  }
+  function showFactoidToolbar(noteId) {
+    const selection = window.getSelection();
+    const text = selection == null ? void 0 : selection.toString().trim();
+    const toolbar = document.getElementById("factoid-toolbar");
+    if (!toolbar) return;
+    if (!text || text.length === 0 || !selection || selection.rangeCount === 0) {
+      toolbar.classList.add("hidden");
+      return;
+    }
+    const range = selection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0) {
+      toolbar.classList.add("hidden");
+      return;
+    }
+    const node = range.startContainer;
+    const inExcluded = (el) => {
+      while (el) {
+        if (el.id === "factoid-list" || el.id === "factoid-toolbar") return true;
+        el = el.parentNode;
+      }
+      return false;
+    };
+    if (inExcluded(node)) {
+      toolbar.classList.add("hidden");
+      return;
+    }
+    toolbar.classList.remove("hidden");
+    toolbar.style.position = "fixed";
+    const top = rect.top - 50;
+    toolbar.style.top = (top < 10 ? rect.bottom + 8 : top) + "px";
+    toolbar.style.left = Math.max(8, rect.left + rect.width / 2 - 80) + "px";
+  }
+  function closeMemexNote() {
+    showMemexList();
+  }
   function handleLogout() {
     logout();
     notesRendered = false;
@@ -2462,7 +2713,7 @@ ${content}</tr>
   }
   function init() {
     return __async(this, null, function* () {
-      var _a, _b, _c, _d, _e, _f;
+      var _a, _b, _c, _d, _e, _f, _g;
       try {
         const resp = yield fetch("flashcards.json");
         data = yield resp.json();
@@ -2480,25 +2731,28 @@ ${content}</tr>
           const view = el.dataset.view;
           if (view === "read") {
             showRead();
+          } else if (view === "memex") {
+            showMemex();
           } else {
             renderDashboard();
           }
         });
       });
       (_b = $("#note-back-btn")) == null ? void 0 : _b.addEventListener("click", closeNote);
-      (_c = $("#card-reveal-btn")) == null ? void 0 : _c.addEventListener("click", revealBack);
+      (_c = document.getElementById("memex-note-back-btn")) == null ? void 0 : _c.addEventListener("click", closeMemexNote);
+      (_d = $("#card-reveal-btn")) == null ? void 0 : _d.addEventListener("click", revealBack);
       $$(".rate-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           rateCard(parseInt(btn.dataset.quality || "0"));
         });
       });
-      (_d = $("#study-back-btn")) == null ? void 0 : _d.addEventListener("click", () => {
+      (_e = $("#study-back-btn")) == null ? void 0 : _e.addEventListener("click", () => {
         renderDashboard();
       });
-      (_e = $("#study-done-btn")) == null ? void 0 : _e.addEventListener("click", () => {
+      (_f = $("#study-done-btn")) == null ? void 0 : _f.addEventListener("click", () => {
         renderDashboard();
       });
-      (_f = $("#study-reset-btn")) == null ? void 0 : _f.addEventListener("click", () => {
+      (_g = $("#study-reset-btn")) == null ? void 0 : _g.addEventListener("click", () => {
         if (currentCategory && confirm("Reset all review data for this category?")) {
           const cards = (data == null ? void 0 : data.flashcards[currentCategory]) || [];
           cards.forEach((c) => resetCard(c.id));

@@ -644,6 +644,16 @@ html, body {
   border-radius: 999px;
 }
 
+.memex-badge {
+  font-size: 11px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  background: rgba(63, 185, 80, 0.12);
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
 .note-back-btn {
   margin-bottom: 12px;
 }
@@ -786,4 +796,122 @@ html, body {
 .markdown-body strong {
   color: var(--text-primary);
   font-weight: 700;
+}
+
+/* ── Factoid tagging ────────────────────────── */
+
+.factoid-highlight {
+  background: rgba(63, 185, 80, 0.2);
+  border-bottom: 2px solid var(--green);
+  border-radius: 2px;
+  padding: 1px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.factoid-highlight::after {
+  content: "#flashcard";
+  position: absolute;
+  top: -18px;
+  right: 0;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--green);
+  background: rgba(63, 185, 80, 0.12);
+  padding: 1px 6px;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+/* Floating toolbar that appears on text selection */
+.factoid-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-size: 13px;
+}
+
+.factoid-toolbar.hidden {
+  display: none;
+}
+
+/* Factoid count badge (small green pill) */
+.factoid-count-badge {
+  font-size: 11px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  background: rgba(63, 185, 80, 0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  margin-left: 4px;
+}
+
+/* Factoid list (below note content) */
+.factoid-list {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.factoid-list-heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.factoid-empty {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 12px;
+  text-align: center;
+}
+
+.factoid-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+}
+
+.factoid-tag-badge-small {
+  font-size: 10px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  background: rgba(63, 185, 80, 0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.factoid-list-text {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.factoid-untag-btn {
+  flex-shrink: 0;
+  font-size: 16px;
+  padding: 2px 8px;
+  line-height: 1;
+  color: var(--red);
 }

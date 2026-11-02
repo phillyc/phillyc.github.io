@@ -39,6 +39,7 @@
           <h1 class="header-title">Memex</h1>
           <nav class="view-nav">
             <button class="nav-btn" data-view="read">Read</button>
+            <button class="nav-btn" data-view="memex">Memex</button>
             <button class="nav-btn active" data-view="review">Review</button>
           </nav>
         </div>
@@ -85,6 +86,7 @@
           <span id="card-category" class="header-category"></span>
           <nav class="view-nav">
             <button class="nav-btn" data-view="read">Read</button>
+            <button class="nav-btn" data-view="memex">Memex</button>
             <button class="nav-btn active" data-view="review">Review</button>
           </nav>
         </div>
@@ -145,6 +147,7 @@
           <h1 class="header-title">Memex</h1>
           <nav class="view-nav">
             <button class="nav-btn active" data-view="read">Read</button>
+            <button class="nav-btn" data-view="memex">Memex</button>
             <button class="nav-btn" data-view="review">Review</button>
           </nav>
         </div>
@@ -168,6 +171,42 @@
         <div id="read-detail-view" class="read-detail-view hidden">
           <button id="note-back-btn" class="btn btn-ghost note-back-btn">← Back to notes</button>
           <div id="note-detail"></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- ═══ MEMEX SCREEN (#memex-tagged notes only) ═══ -->
+    <div id="screen-memex" class="screen">
+      <header class="app-header">
+        <div class="header-left">
+          <span class="header-logo">🧠</span>
+          <h1 class="header-title">Memex</h1>
+          <nav class="view-nav">
+            <button class="nav-btn" data-view="read">Read</button>
+            <button class="nav-btn active" data-view="memex">Memex</button>
+            <button class="nav-btn" data-view="review">Review</button>
+          </nav>
+        </div>
+        <div class="header-right">
+          <span id="memex-user-name" class="header-user user-name"></span>
+          <button class="btn btn-ghost logout-btn" title="Sign out">Sign Out</button>
+        </div>
+      </header>
+
+      <main class="read-content">
+        <div id="memex-list-view" class="read-list-view">
+          <div class="read-heading">
+            <h2 class="section-title">#memex Notes</h2>
+            <p class="read-subtitle">Notes tagged with #memex in your vault.</p>
+          </div>
+          <div id="memex-notes-list" class="notes-list">
+            <div class="notes-loading">Loading notes…</div>
+          </div>
+        </div>
+
+        <div id="memex-detail-view" class="read-detail-view hidden">
+          <button id="memex-note-back-btn" class="btn btn-ghost note-back-btn">← Back to #memex notes</button>
+          <div id="memex-note-detail"></div>
         </div>
       </main>
     </div>
